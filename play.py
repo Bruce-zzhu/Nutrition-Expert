@@ -10,7 +10,7 @@ FOODS = "./food_list.json"
 stage: str
 
 with open(FOODS) as f:
-    properties = json.loads(PROPS)
+    food_props = json.loads(FOODS)
 
 
 def main():
@@ -30,17 +30,18 @@ if __name__ == "__main__":
     main()
 
 
-def generate_food():
-    rand_fname = FOODS["nutrients"][stage][
-        random.randint(0, len(FOODS["nutrients"][stage]))
+def generate_food(x: int):
+    rand_fname = food_props["nutrients"][stage][
+        random.randint(0, len(food_props["nutrients"][stage]))
     ]
-    for food in FOODS["foods"]:
+    for food in food_props["foods"]:
         if rand_fname == food["name"]:
+            img = pygame.image.load(food_props["image_url"])
             match food["type"]:
                 case "healthy":
-                    return Healthy(food)
+                    return Healthy(food, x, img.get_width(), img.get_height())
                 case "water":
-                    return Water(food)
+                    return Water(food, x, img.get_width(), img.get_height())
                 case "unhealthy":
-                    return Unhealthy(food)
+                    return Unhealthy(food, x, img.get_width(), img.get_height())
     return False
