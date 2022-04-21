@@ -1,18 +1,17 @@
 from abc import ABCMeta, abstractmethod
-from tokenize import String
-from xmlrpc.client import boolean
+import pygame
 
 
-class Food(metaclass=ABCMeta):
-    image_url: String
+class Food(pygame.sprite.Sprite, metaclass=ABCMeta):
+    image_url: str
     satiation: int
     score: int
     eaten: bool
     location: tuple
 
     @abstractmethod
-    def __init__(properties):
-        pass
+    def __init__(self, food_props):
+        pygame.sprite.Sprite.__init__(self)
 
     @abstractmethod
     def add_scores(self):
