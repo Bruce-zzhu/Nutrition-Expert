@@ -1,4 +1,4 @@
-SCREEN_W = 1000
+SCREEN_W = 1200
 SCREEN_H = 700
 
 # The target framerate of our game. Set to 0 for no limit
