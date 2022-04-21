@@ -15,7 +15,7 @@ with open(FOODS) as f:
 
 def main():
     pygame.init()
-    display = pygame.display.set_mode((SCREEN_W, SCREEN_H), 0, 32)
+    display = pygame.display.set_mode((SCREEN_W, SCREEN_H))
     font = pygame.font.SysFont("Arial", 24)
 
     running = True
@@ -24,6 +24,13 @@ def main():
 
     while running:
         delta = game_clock.tick(FPS)
+
+        events = pygame.event.get()
+
+        for e in events:
+            if e.type == pygame.QUIT:
+                running = False
+        break
 
 
 if __name__ == "__main__":
