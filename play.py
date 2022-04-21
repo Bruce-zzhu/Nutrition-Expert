@@ -3,8 +3,11 @@ import pygame
 from src.constants import SCREEN_W, SCREEN_H, FPS
 import json
 
+from src.entities.food import Healthy, Water, Unhealthy
+
 FOODS = "./food_list.json"
-NFOOD_PER_NUTRIENT = 9
+
+stage: str
 
 with open(FOODS) as f:
     properties = json.loads(PROPS)
@@ -28,5 +31,16 @@ if __name__ == "__main__":
 
 
 def generate_food():
-    random.randint(0, 9)
-    return this_food
+    rand_fname = FOODS["nutrients"][stage][
+        random.randint(0, len(FOODS["nutrients"][stage]))
+    ]
+    for food in FOODS["foods"]:
+        if rand_fname == food["name"]:
+            match food["type"]:
+                case "healthy":
+                    return Healthy(food)
+                case "water":
+                    return Water(food)
+                case "unhealthy":
+                    return Unhealthy(food)
+    return False
