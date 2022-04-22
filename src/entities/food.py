@@ -1,16 +1,10 @@
 from collections import defaultdict
+from play import FOODS
 import pygame
 
 from src.entities.entity import Entity
 
-FOOD_VEL = 5
-
-## food __init__ param order
-P_NUTRIENTS = 0
-P_FOOD = 1
-P_X = 2
-P_WIDTH = 3
-P_HEIGHT = 4
+from src.constants import FOOD_STATS, F_PARAMS
 
 
 class Food(Entity):
@@ -21,7 +15,7 @@ class Food(Entity):
     def __init__(self, params):
         Entity.__init__(self, params.append(0))
         eaten = False
-        self.velocity = (0, FOOD_VEL)
+        self.velocity = (0, FOOD_STATS["FOOD_VEL"])
 
     def add_stats(self):
         pass
@@ -32,11 +26,11 @@ class Healthy(Food):
 
     def __init__(self, params):
         super(self, params)
-        score = 10
-        satiation = 5
+        score = FOOD_STATS["H_SCORE"]
+        satiation = FOOD_STATS["SATIATION"]
         nutrition = defaultdict(int)
-        for nutrient in params[P_NUTRIENTS]:
-            nutrition[nutrient] = params[P_FOOD][nutrient]
+        for nutrient in params[F_PARAMS["NUTRIENTS"]]:
+            nutrition[nutrient] = params[F_PARAMS["FOOD"]][nutrient]
 
     def add_stats(self):
         return
@@ -47,7 +41,9 @@ class Water(Food):
 
     def __init__(self, params):
         super(self, params)
-        hydration = 10
+        hydration = FOOD_STATS["HYDRATION"]
+        score = FOOD_STATS["W_SCORE"]
+        satiation = 0
 
     def add_stats(self):
         return
@@ -59,8 +55,10 @@ class Unhealthy(Food):
 
     def __init__(self, params):
         super(self, params)
-        hydration = -10
+        score = FOOD_STATS["U_SCORE"]
+        hydration = -FOOD_STATS["HYDRATION"]
         fibre = 2
+        satiation = FOOD_STATS["SATIATION"]
 
     def add_stats(self):
         return
