@@ -18,6 +18,7 @@ class Player(Entity):
     move_direction: int
     speed: int
     ticks: int
+    prev_direction: int
 
     def __init__(self):
         super().__init__(
@@ -30,6 +31,7 @@ class Player(Entity):
         self.scores = 0
         self.speed = PLAYER_SPEED
         self.move_direction = 0  # -1 for left; 0 for stop; 1 for right
+        self.prev_direction = 0
         self.ticks = 0
 
     def move_left(self):
@@ -59,7 +61,10 @@ class Player(Entity):
             self.image = PLAYER_IMAGE_PATH + "Dead.png"
 
     def tick(self, delta: int, objects: "list"):
-        face_right = self.velocity.x >= 0
+        if self.prev_direction < 0:
+            self.image = pygame.transform.flip(self.loadImg(), True, False)
+        else:
+            self.image = self.loadImg()
 
         self.velocity.x = self.speed * self.move_direction
         self.ticks = (self.ticks + 1) % 18
@@ -77,10 +82,9 @@ class Player(Entity):
                 self.full_image_path = (
                     PLAYER_IMAGE_PATH + "Idle_" + str((int(img_idx) + 1) % 4) + ".png"
                 )
-            if not face_right:
-                self.image = pygame.transform.flip(self.loadImg(), True, False)
-            else:
-                self.image = self.loadImg()
+
+            if self.move_direction != 0:
+                self.prev_direction = self.move_direction
 
         # check colliction with food
         for obj in objects:
