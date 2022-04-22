@@ -27,6 +27,7 @@ FOOD_STATS = {
     "SATIATION": 5,
     "U_FIBRE": 2,
     "SHRINKAGE": 4,
+    "MAX_SIZE": 50,
 }
 
 F_PARAMS = {"NUTRIENTS": 0, "FOOD": 1, "X": 2, "WIDTH": 3, "HEIGHT": 4, "STAGE": 5}

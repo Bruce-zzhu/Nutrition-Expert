@@ -26,7 +26,7 @@ class Food(Entity):
         self.velocity.x = 0
         self.velocity.y = FOOD_STATS["FOOD_VEL"]
         self.image = pygame.transform.scale(
-            self.image, (self.image.get_width() // 4, self.image.get_height() // 4)
+            self.image, (FOOD_STATS["MAX_SIZE"], FOOD_STATS["MAX_SIZE"])
         )
 
     def tick(self, delta: int, objects: "list"):
