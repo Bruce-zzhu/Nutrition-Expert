@@ -55,13 +55,14 @@ class Game:
                     pygame.quit()
                     exit()
 
-    def generate_food(x: int):
-        rand_fname = FOOD_PROPS["nutrients"][stage][
-            random.randint(0, len(FOOD_PROPS["nutrients"][stage]))
+    def generate_food(self):
+        x = randint(0, SCREEN_W)
+        rand_fname = FOOD_PROPS["nutrients"][self.stage][
+            randint(0, len(FOOD_PROPS["nutrients"][self.stage]))
         ]
         for food in FOOD_PROPS["foods"]:
             if rand_fname == food["name"]:
-                img = pygame.image.load(FOOD_PROPS["image_url"])
+                img = pygame.image.load(food["image_url"])
                 if food["type"] == "healthy":
                     return Healthy(
                         [
@@ -131,48 +132,5 @@ class Game:
 
         # generate food every 2 seconds
         if self.time_passed == 0:
-            generate_food(self.stage)
+            self.generate_food()
         self.time_passed = (self.time_passed + 1) % (FPS * 2)
-
-
-def generate_food(stage: str):
-    x = randint(0, SCREEN_W)
-
-    rand_fname = FOOD_PROPS["nutrients"][stage][
-        randint(0, len(FOOD_PROPS["nutrients"][stage]))
-    ]
-    for food in FOOD_PROPS["foods"]:
-        if rand_fname == food["name"]:
-            food["image_url"]
-            img = pygame.image.load(food["image_url"])
-            if food["type"] == "healthy":
-                return Healthy(
-                    [
-                        FOOD_PROPS["nutrients"].keys(),
-                        food,
-                        x,
-                        img.get_width(),
-                        img.get_height(),
-                    ]
-                )
-            elif food["type"] == "water":
-                return Water(
-                    [
-                        FOOD_PROPS["nutrients"].keys(),
-                        food,
-                        x,
-                        img.get_width(),
-                        img.get_height(),
-                    ]
-                )
-            elif food["type"] == "unhealthy":
-                return Unhealthy(
-                    [
-                        FOOD_PROPS["nutrients"].keys(),
-                        food,
-                        x,
-                        img.get_width(),
-                        img.get_height(),
-                    ]
-                )
-    return False
