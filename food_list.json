@@ -50,7 +50,7 @@
         {
             "name": "almond",
             "type": "healthy",
-            "image_url": "./assets/images/almond.jpg",
+            "image_url": "./assets/images/almond.svg",
             "vit_c": 0,
             "fibre": 13
         },

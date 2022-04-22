@@ -1,20 +1,26 @@
+from collections import defaultdict
 import pygame
 
 from src.entities.entity import Entity
 
 FOOD_VEL = 5
 
+## food __init__ param order
+P_NUTRIENTS = 0
+P_FOOD = 1
+P_X = 2
+P_WIDTH = 3
+P_HEIGHT = 4
+
 
 class Food(Entity):
     satiation: int
     score: int
     eaten: bool
-    location: tuple
 
-    def __init__(self, food_props, x, width, height):
-        Entity.__init__(self, food_props["image_url"], x, 0, width, height)
+    def __init__(self, params):
+        Entity.__init__(self, params.append(0))
         eaten = False
-        location = (x, 0)
         self.velocity = (0, FOOD_VEL)
 
     def add_stats(self):
@@ -22,24 +28,39 @@ class Food(Entity):
 
 
 class Healthy(Food):
-    def __init__(self, food_props, x, width, height):
-        super(self, food_props, x, width, height)
+    nutrition: dict
+
+    def __init__(self, params):
+        super(self, params)
+        score = 10
+        satiation = 5
+        nutrition = defaultdict(int)
+        for nutrient in params[P_NUTRIENTS]:
+            nutrition[nutrient] = params[P_FOOD][nutrient]
 
     def add_stats(self):
         return
 
 
 class Water(Food):
-    def __init__(self, food_props, x, width, height):
-        super(self, food_props)
+    hydration: int
+
+    def __init__(self, params):
+        super(self, params)
+        hydration = 10
 
     def add_stats(self):
         return
 
 
 class Unhealthy(Food):
-    def __init__(self, food_props, x, width, height):
-        super(self, food_props)
+    hydration: int
+    fibre: int
+
+    def __init__(self, params):
+        super(self, params)
+        hydration = -10
+        fibre = 2
 
     def add_stats(self):
         return
