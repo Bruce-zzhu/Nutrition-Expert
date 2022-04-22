@@ -22,6 +22,7 @@ class Entity(pygame.Rect):
         """delta: time between frames"""
         clamp_x = max(self.x + round(self.velocity.x * delta), 0)
         clamp_x = min(clamp_x, SCREEN_W - self.width)
+
         self.update(
             clamp_x, self.y + round(self.velocity.y * delta), self.width, self.height
         )
