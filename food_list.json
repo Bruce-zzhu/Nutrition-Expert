@@ -1,12 +1,12 @@
 {
     "nutrients": {
-        "vit_c": [
+        "Vitamin_C": [
             "orange", "capsicum", "broccoli", "almond", "milk", "bread", "coke", "chips", "water"
         ],
-        "calc": [
+        "Calcium": [
             "milk", "broccoli", "bread", "avocado", "capsicum", "meat", "coke", "chips", "water"
         ],
-        "fibre": [
+        "Fibre": [
             "avocado", "bean", "almond", "meat", "milk", "bread", "coke", "chips", "water"
         ]
     },
@@ -16,43 +16,43 @@
             "name": "almond",
             "type": "healthy",
             "image_url": "./assets/image/foods/almond.svg",
-            "vit_c": 0,
-            "fibre": 13
+            "Vitamin_C": 0,
+            "Fibre": 13
         },
         {
             "name": "avocado",
             "type": "healthy",
             "image_url": "./assets/image/foods/avocado.png",
-            "calc": 12,
-            "fibre": 7
+            "Calcium": 12,
+            "Fibre": 7
         },
         {
             "name": "bean",
             "type": "healthy",
             "image_url": "./assets/image/foods/bean.png",
-            "fibre": 10
+            "Fibre": 10
         },
         {
             "name": "bread",
             "type": "healthy",
             "image_url": "./assets/image/foods/bread.png",
-            "vit_c": 0,
-            "calc": 260,
-            "fibre": 3
+            "Vitamin_C": 0,
+            "Calcium": 260,
+            "Fibre": 3
         },
         {
             "name": "broccoli",
             "type": "healthy",
             "image_url": "./assets/image/foods/broccoli.svg",
-            "vit_c": 89,
+            "Vitamin_C": 89,
             "calcium": 75
         },
         {
             "name": "capsicum",
             "type": "healthy",
             "image_url": "./assets/image/foods/capsicum.svg",
-            "vit_c": 128,
-            "calc": 7
+            "Vitamin_C": 128,
+            "Calcium": 7
         },
         {
             "name": "chips",
@@ -68,22 +68,22 @@
             "name": "meat",
             "type": "healthy",
             "image_url": "./assets/image/foods/meat.png",
-            "calc": 6,
-            "fibre": 0
+            "Calcium": 6,
+            "Fibre": 0
         },
         {
             "name": "milk",
             "type": "healthy",
             "image_url": "./assets/image/foods/milk.png",
-            "vit_c": 0,
-            "calc": 113,
-            "fibre": 0
+            "Vitamin_C": 0,
+            "Calcium": 113,
+            "Fibre": 0
         },
         {
             "name": "orange",
             "type": "healthy",
             "image_url": "./assets/image/foods/orange.png",
-            "vit_c": 53
+            "Vitamin_C": 53
         },
         {
             "name": "water",
