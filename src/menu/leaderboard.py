@@ -97,6 +97,8 @@ def main():
         # Set screen blits
         screen.blit(title, title_position)
         screen.blit(selectable_back, selectable_back_pos)
+
+        
         for i in range(1, len(username) + 1):
             # Make Surfaces and update username and score dictionaries
             username[i] = text_format_for_listing(username[i])
