@@ -3,13 +3,13 @@ import pygame
 from src.constants import SCREEN_W, SCREEN_H, FPS, FOOD_STATS
 import json
 
-from src.entities.food import Healthy, Water, Unhealthy
+from src.entities.food import *
 
 stage: str
 
 food_path = FOOD_STATS["FOODS"]
 with open(food_path, "r") as f:
-    FOODS = json.loads(f.read())
+    FOOD_PROPS = json.loads(f.read())
 
 
 def main():
@@ -37,16 +37,16 @@ if __name__ == "__main__":
 
 
 def generate_food(x: int):
-    rand_fname = food_props["nutrients"][stage][
-        random.randint(0, len(food_props["nutrients"][stage]))
+    rand_fname = FOOD_PROPS["nutrients"][stage][
+        random.randint(0, len(FOOD_PROPS["nutrients"][stage]))
     ]
-    for food in food_props["foods"]:
+    for food in FOOD_PROPS["foods"]:
         if rand_fname == food["name"]:
-            img = pygame.image.load(food_props["image_url"])
+            img = pygame.image.load(FOOD_PROPS["image_url"])
             if food["type"] == "healthy":
                 return Healthy(
                     [
-                        food_props["nutrients"].keys(),
+                        FOOD_PROPS["nutrients"].keys(),
                         food,
                         x,
                         img.get_width(),
@@ -56,7 +56,7 @@ def generate_food(x: int):
             elif food["type"] == "water":
                 return Water(
                     [
-                        food_props["nutrients"].keys(),
+                        FOOD_PROPS["nutrients"].keys(),
                         food,
                         x,
                         img.get_width(),
@@ -66,7 +66,7 @@ def generate_food(x: int):
             elif food["type"] == "unhealthy":
                 return Unhealthy(
                     [
-                        food_props["nutrients"].keys(),
+                        FOOD_PROPS["nutrients"].keys(),
                         food,
                         x,
                         img.get_width(),
