@@ -17,9 +17,6 @@ class Food(Entity):
         eaten = False
         self.velocity = (0, FOOD_STATS["FOOD_VEL"])
 
-    def add_stats(self):
-        pass
-
 
 class Healthy(Food):
     nutrition: dict
@@ -32,9 +29,6 @@ class Healthy(Food):
         for nutrient in params[F_PARAMS["NUTRIENTS"]]:
             nutrition[nutrient] = params[F_PARAMS["FOOD"]][nutrient]
 
-    def add_stats(self):
-        return
-
 
 class Water(Food):
     hydration: int
@@ -45,20 +39,15 @@ class Water(Food):
         score = FOOD_STATS["W_SCORE"]
         satiation = 0
 
-    def add_stats(self):
-        return
-
 
 class Unhealthy(Food):
     hydration: int
-    fibre: int
+    nutrition: dict
 
     def __init__(self, params):
         super(self, params)
         score = FOOD_STATS["U_SCORE"]
         hydration = -FOOD_STATS["HYDRATION"]
-        fibre = 2
+        nutrition = defaultdict(int)
+        nutrition["fibre"] = FOOD_STATS["U_FIBRE"]
         satiation = FOOD_STATS["SATIATION"]
-
-    def add_stats(self):
-        return

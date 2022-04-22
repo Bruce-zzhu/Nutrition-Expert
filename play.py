@@ -3,7 +3,7 @@ import pygame
 from src.constants import SCREEN_W, SCREEN_H, FPS, FOOD_STATS
 import json
 
-import src.entities.food
+from src.entities.food import Healthy, Water, Unhealthy
 
 stage: str
 
