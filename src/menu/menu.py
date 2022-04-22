@@ -31,7 +31,7 @@ blue=(0, 0, 255)
 yellow=(255, 255, 0)
 
 # Game Fonts
-font = "src/menu/Retro.ttf"
+font = "src/menu/HyFWoolBall-2.ttf"
 
 # Main Menu image
 
@@ -56,12 +56,12 @@ def main_menu():
                 pygame.quit()
                 quit()
             if event.type==pygame.KEYDOWN:
-                if event.key==pygame.K_UP and selected !="quit":
+                if event.key==pygame.K_UP and selected !="history":
                     selected="start"
                 elif event.key==pygame.K_DOWN and selected !="start":
-                    selected="quit"
-                elif event.key!=pygame.K_RETURN:
                     selected="history"
+                elif event.key!=pygame.K_RETURN:
+                    selected="practice"
 
 
 
@@ -69,12 +69,13 @@ def main_menu():
                     if selected=="start":
                         #start the game
                         print("Start")
-                    if selected=="quit":
-                        pygame.quit()
-                        quit()
+
                     if selected=="history":
-                        #给出记录
                         print("history")
+
+                    if selected=="practice":
+                        #给出记录
+                        print("practice")
 
         # Main Menu UI
         
@@ -83,30 +84,30 @@ def main_menu():
 
         #select start in the menu
         if selected=="start":
-            text_start=text_format("Start"+" "*40+"1", font, 75, yellow)
+            text_start=text_format("Start"+" "*20+"1", font, 75, yellow)
         else:
-            text_start = text_format("Start"+" "*40+"1", font, 75, white)
+            text_start = text_format("Start"+" "*20+"1", font, 75, white)
 
         #select history in the menu
-        if selected=="history":
-            text_history=text_format("History"+" "*36+"2", font, 75, yellow)
+        if selected=="practice":
+            text_practice=text_format("Practice"+" "*16+"2", font, 75, yellow)
         else:
-            text_history = text_format("History"+" "*36+"2", font, 75, white)
+            text_practice = text_format("Practice"+" "*16+"2", font, 75, white)
 
         #select quit in the menu
-        if selected=="quit":
-            text_quit=text_format("Quit"+" "*43+"3", font, 75, yellow)
+        if selected=="history":
+            text_history=text_format("History"+" "*18+"3", font, 75, yellow)
         else:
-            text_quit = text_format("Quit"+" "*43+"3", font, 75, white)
+            text_history = text_format("History"+" "*18+"3", font, 75, white)
 
         
         title_rect=title.get_rect()
 
         # Main Menu Text
         screen.blit(title, (screen_width/2 - (title_rect[2]/2), 20))
-        screen.blit(text_start, (screen_width/5, 240))
-        screen.blit(text_history, (screen_width/5, 300))
-        screen.blit(text_quit, (screen_width/5, 360))
+        screen.blit(text_start, (screen_width/6, 200))
+        screen.blit(text_practice, (screen_width/6, 280))
+        screen.blit(text_history, (screen_width/6, 360))
         pygame.display.update()
         clock.tick(FPS)
 
