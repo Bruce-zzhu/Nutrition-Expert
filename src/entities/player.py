@@ -2,6 +2,7 @@ from src.constants import FULL_VALUE
 from src.entities.food import Food, Healthy, Unhealthy, Water
 
 class player:
+    
     satiation: int
     hydration: int
     scores: int

@@ -1,45 +1,57 @@
+from collections import defaultdict
+from play import FOOD_PROPS
 import pygame
 
 from src.entities.entity import Entity
 
-FOOD_VEL = 5
+from src.constants import SCREEN_H, FOOD_STATS, F_PARAMS
 
 
 class Food(Entity):
     satiation: int
     score: int
     eaten: bool
-    location: tuple
 
-    def __init__(self, food_props, x, width, height):
-        Entity.__init__(self, food_props["image_url"], x, 0, width, height)
+    def __init__(self, params):
+        Entity.__init__(self, params.append(0))
         eaten = False
-        location = (x, 0)
-        self.velocity = (0, FOOD_VEL)
+        self.velocity = (0, FOOD_STATS["FOOD_VEL"])
 
-    def add_stats(self):
-        pass
+    def tick(self, delta, objects):
+        if self.eaten or self.y < 0 or self.y > SCREEN_H:
+            self.kill()
 
 
 class Healthy(Food):
-    def __init__(self, food_props, x, width, height):
-        super(self, food_props, x, width, height)
+    nutrition: dict
 
-    def add_stats(self):
-        return
+    def __init__(self, params):
+        super(self, params)
+        score = FOOD_STATS["H_SCORE"]
+        satiation = FOOD_STATS["SATIATION"]
+        nutrition = defaultdict(int)
+        for nutrient in params[F_PARAMS["NUTRIENTS"]]:
+            nutrition[nutrient] = params[F_PARAMS["FOOD"]][nutrient]
 
 
 class Water(Food):
-    def __init__(self, food_props, x, width, height):
-        super(self, food_props)
+    hydration: int
 
-    def add_stats(self):
-        return
+    def __init__(self, params):
+        super(self, params)
+        hydration = FOOD_STATS["HYDRATION"]
+        score = FOOD_STATS["W_SCORE"]
+        satiation = 0
 
 
 class Unhealthy(Food):
-    def __init__(self, food_props, x, width, height):
-        super(self, food_props)
+    hydration: int
+    nutrition: dict
 
-    def add_stats(self):
-        return
+    def __init__(self, params):
+        super(self, params)
+        score = FOOD_STATS["U_SCORE"]
+        hydration = -FOOD_STATS["HYDRATION"]
+        nutrition = defaultdict(int)
+        nutrition["fibre"] = FOOD_STATS["U_FIBRE"]
+        satiation = FOOD_STATS["SATIATION"]

@@ -1,5 +1,5 @@
 import pygame
-from src.constants import SCREEN_W
+from src.constants import SCREEN_W, F_PARAMS
 
 
 class Entity(pygame.Rect):
@@ -7,12 +7,19 @@ class Entity(pygame.Rect):
     image: pygame.Surface
     expired: bool  # for entity to disappear or not
 
-    def __init__(self, image_url: str, x: int, y: int, width: int, height: int):
-        super().__init__(x, y, width, height)
-        image = pygame.image.load(image_url)
+    def __init__(self, params):
+        super().__init__(
+            params[F_PARAMS["X"]],
+            params[F_PARAMS["Y"]],
+            params[F_PARAMS["WIDTH"]],
+            params[F_PARAMS["HEIGHT"]],
+        )
+        image = pygame.image.load(params[F_PARAMS["FOOD"]]["image_url"])
         self.velocity = pygame.Vector2()  # (0, 0)
         self.expired = False
-        self.image = pygame.transform.smoothscale(image, (width, height))
+        self.image = pygame.transform.smoothscale(
+            image, (params[F_PARAMS["WIDTH"]], params[F_PARAMS["WIDTH"]])
+        )
 
     def render(self, display: pygame.Surface):
         display.blit(self.image, (self.x, self.y))
