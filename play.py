@@ -1,16 +1,15 @@
 import random
 import pygame
-from src.constants import SCREEN_W, SCREEN_H, FPS
+from src.constants import SCREEN_W, SCREEN_H, FPS, FOOD_STATS
 import json
 
-from src.entities.food import Healthy, Water, Unhealthy
-
-FOODS = "./food_list.json"
+import src.entities.food
 
 stage: str
 
-with open(FOODS) as f:
-    food_props = json.loads(FOODS)
+food_path = FOOD_STATS["FOODS"]
+with open(food_path, "r") as f:
+    FOODS = json.loads(f.read())
 
 
 def main():
