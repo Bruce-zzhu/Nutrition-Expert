@@ -23,7 +23,7 @@ class Player(Entity):
 
     def move_left(self):
         if self.move_direction >= 0:
-            self.image = pygame.transform.flip(IMAGE_FOLDER + "Run_1.png")
+            self.image = pygame.transform.flip(IMAGE_FOLDER + "Run_0.png")
         else:
             img_idx = self.image[-5:-4]
             self.image = pygame.transform.flip(
@@ -33,13 +33,18 @@ class Player(Entity):
 
     def move_right(self):
         if self.move_direction <= 0:
-            self.image = IMAGE_FOLDER + "Run_1.png"
+            self.image = IMAGE_FOLDER + "Run_0.png"
         else:
             img_idx = self.image[-5:-4]
             self.image = IMAGE_FOLDER + "Run_" + str((img_idx + 1) % 4) + ".png"
         self.move_direction = 1
 
     def stop_moving(self):
+        if self.move_direction != 0:
+            self.image = IMAGE_FOLDER + "Idle_0.png"
+        else:
+            img_idx = self.image[-5:-4]
+            self.image = IMAGE_FOLDER + "Idle_" + str((img_idx + 1) % 4) + ".png"
         self.move_direction = 0
 
     def is_full(self):
