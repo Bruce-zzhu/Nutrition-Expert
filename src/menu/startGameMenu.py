@@ -56,10 +56,10 @@ def main_menu():
                 pygame.quit()
                 quit()
             if event.type==pygame.KEYDOWN:
-                if event.key==pygame.K_UP and selected !="leaderboard":
+                if event.key==pygame.K_UP and selected !="back":
                     selected="start"
                 elif event.key==pygame.K_DOWN and selected !="start":
-                    selected="leaderboard"
+                    selected="back"
                 elif event.key!=pygame.K_RETURN:
                     selected="practice"
 
@@ -70,8 +70,8 @@ def main_menu():
                         #start the game
                         print("Start")
 
-                    if selected=="leaderboard":
-                        print("leaderboard")
+                    if selected=="back":
+                        print("back")
 
                     if selected=="practice":
                         #给出记录
@@ -79,26 +79,26 @@ def main_menu():
 
         # Main Menu UI
         
-        title=text_format("Nutrition-Expert", font, 100, white)
+        title=text_format("Please Start The Game", font, 90, white)
         menu=text_format("Menu", font, 85, white)
 
         #select start in the menu
         if selected=="start":
-            text_start=text_format("Start"+" "*20+"1", font, 75, yellow)
+            text_start=text_format("Start"+" "*16+"1", font, 75, yellow)
         else:
-            text_start = text_format("Start"+" "*20+"1", font, 75, white)
+            text_start = text_format("Start"+" "*16+"1", font, 75, white)
 
-
+        #select practice in the menu
         if selected=="practice":
-            text_practice=text_format("Practice"+" "*16+"2", font, 75, yellow)
+            text_practice=text_format("Practice"+" "*12+"2", font, 75, yellow)
         else:
-            text_practice = text_format("Practice"+" "*16+"2", font, 75, white)
+            text_practice = text_format("Practice"+" "*12+"2", font, 75, white)
 
-        #select quit in the menu
-        if selected=="leaderboard":
-            text_leaderboard=text_format("Leaderboard"+" "*10+"3", font, 75, yellow)
+        #select back in the menu
+        if selected=="back":
+            text_back=text_format("Back"+" "*17+"3", font, 75, yellow)
         else:
-            text_leaderboard = text_format("Leaderboard"+" "*10+"3", font, 75, white)
+            text_back = text_format("Back"+" "*17+"3", font, 75, white)
 
         
         title_rect=title.get_rect()
@@ -107,7 +107,7 @@ def main_menu():
         screen.blit(title, (screen_width/2 - (title_rect[2]/2), 20))
         screen.blit(text_start, (screen_width/6, 180))
         screen.blit(text_practice, (screen_width/6, 280))
-        screen.blit(text_leaderboard, (screen_width/6, 380))
+        screen.blit(text_back, (screen_width/6, 380))
         pygame.display.update()
         clock.tick(FPS)
 
