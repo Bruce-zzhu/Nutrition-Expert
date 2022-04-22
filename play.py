@@ -44,11 +44,34 @@ def generate_food(x: int):
     for food in food_props["foods"]:
         if rand_fname == food["name"]:
             img = pygame.image.load(food_props["image_url"])
-            match food["type"]:
-                case "healthy":
-                    return Healthy(food, x, img.get_width(), img.get_height())
-                case "water":
-                    return Water(food, x, img.get_width(), img.get_height())
-                case "unhealthy":
-                    return Unhealthy(food, x, img.get_width(), img.get_height())
+            if food["type"] == "healthy":
+                return Healthy(
+                    (
+                        food_props["nutrients"].keys(),
+                        food,
+                        x,
+                        img.get_width(),
+                        img.get_height(),
+                    )
+                )
+            elif food["type"] == "water":
+                return Water(
+                    (
+                        food_props["nutrients"].keys(),
+                        food,
+                        x,
+                        img.get_width(),
+                        img.get_height(),
+                    )
+                )
+            elif food["type"] == "unhealthy":
+                return Unhealthy(
+                    (
+                        food_props["nutrients"].keys(),
+                        food,
+                        x,
+                        img.get_width(),
+                        img.get_height(),
+                    )
+                )
     return False
