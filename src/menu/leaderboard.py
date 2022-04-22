@@ -78,7 +78,6 @@ def main_menu():
                         print("practice")
 
         # Main Menu UI
-        
         title=text_format("Nutrition-Expert", font, 100, white)
         menu=text_format("Menu", font, 85, white)
 
