@@ -1,5 +1,6 @@
-from pygame.transform import flip
-from src.constants import FULL_VALUE, PLAYER_SPEED, IMAGE_FOLDER
+import pygame
+from pygame.image import load as loadImg
+from src.constants import FULL_VALUE, PLAYER_SPEED, IMAGE_FOLDER, DEFAULT_IMG
 from src.entities.food import Food, Healthy, Unhealthy, Water
 from src.entities.entity import Entity
 
@@ -11,11 +12,10 @@ class Player(Entity):
     scores: int
     move_direction: int
     speed: int
-    image: str
 
     def __init__(self):
-        super().__init__(500, 600, 55, 55, IMAGE_FOLDER + "Idle_1.png")
-        self.image = IMAGE_FOLDER + "Idle_1.png"
+        super().__init__(500, 600, 55, 55, IMAGE_FOLDER + DEFAULT_IMG)
+        self.image = loadImg(IMAGE_FOLDER + DEFAULT_IMG)
         self.satiation = 0
         self.hydration = FULL_VALUE
         self.scores = 0
@@ -23,29 +23,33 @@ class Player(Entity):
         self.move_direction = 0  # -1 for left; 0 for stop; 1 for right
 
     def move_left(self):
+        image_path: str
         if self.move_direction >= 0:
-            self.image = flip(IMAGE_FOLDER + "Run_0.png", True, False)
+            image_path = IMAGE_FOLDER + "Run_0.png"
         else:
             img_idx = self.image[-5:-4]
-            self.image = flip(
-                IMAGE_FOLDER + "Run_" + str((img_idx + 1) % 4) + ".png", True, False
-            )
+            image_path = IMAGE_FOLDER + "Run_" + str((img_idx + 1) % 4) + ".png"
+        self.image = pygame.transform.flip(loadImg(image_path), True, False)
         self.move_direction = -1
 
     def move_right(self):
+        image_path: str
         if self.move_direction <= 0:
-            self.image = IMAGE_FOLDER + "Run_0.png"
+            image_path = IMAGE_FOLDER + "Run_0.png"
         else:
             img_idx = self.image[-5:-4]
-            self.image = IMAGE_FOLDER + "Run_" + str((img_idx + 1) % 4) + ".png"
+            image_path = IMAGE_FOLDER + "Run_" + str((img_idx + 1) % 4) + ".png"
+        self.image = loadImg(image_path)
         self.move_direction = 1
 
     def stop_moving(self):
+        image_path: str
         if self.move_direction != 0:
-            self.image = IMAGE_FOLDER + "Idle_0.png"
+            image_path = IMAGE_FOLDER + "Idle_0.png"
         else:
             img_idx = self.image[-5:-4]
-            self.image = IMAGE_FOLDER + "Idle_" + str((img_idx + 1) % 4) + ".png"
+            image_path = IMAGE_FOLDER + "Idle_" + str((img_idx + 1) % 4) + ".png"
+        self.image = loadImg(image_path)
         self.move_direction = 0
 
     def is_full(self):

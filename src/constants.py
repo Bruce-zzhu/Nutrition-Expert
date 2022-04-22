@@ -10,7 +10,8 @@ BLACK = (0, 0, 0)
 
 # player properties
 PLAYER_SPEED = 0.8
-DEFAULT_IMAGE = "assets/image/player/Idle_1.png"
+IMAGE_FOLDER = "assets/image/player/"
+DEFAULT_IMG = "Idle_0.png"
 FULL_VALUE = 100
 
 FOOD_STATS = {

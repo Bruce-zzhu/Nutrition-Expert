@@ -2,7 +2,6 @@ from dis import dis
 import enum
 import json
 import random
-from numpy import isin
 import pygame
 from pygame import Color, Vector2
 from random import randint
