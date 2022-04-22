@@ -2,6 +2,8 @@ import pygame
 from pygame.locals import *
 import os
 
+
+
 # Game Initialization
 pygame.init()
 
@@ -17,7 +19,6 @@ screen=pygame.display.set_mode((screen_width, screen_height))
 def text_format(message, textFont, textSize, textColor):
     newFont=pygame.font.Font(textFont, textSize)
     newText=newFont.render(message, 0, textColor)
-
     return newText
 
 
@@ -44,69 +45,33 @@ clock = pygame.time.Clock()
 FPS=30
 
 # Main Menu
-def main_menu():
-
+def introduction():
     menu=True
-    selected="Select Mode"
-
     while menu:
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 pygame.quit()
                 quit()
             if event.type==pygame.KEYDOWN:
-                if event.key==pygame.K_UP:
-                    selected="Select Mode"
-                elif event.key==pygame.K_DOWN :
-                    selected="Introduction"
-                
-
-
                 if event.key==pygame.K_RETURN:
-                    if selected=="Select Mode":
-                        #select vc mode
-                        print("Select Mode")
-                        
-
-                    if selected=="Introduction":
-                        #select fibre mode
-                        print("Introduction")
-
-                    
-                    
+                    print("Back")
 
         # Main Menu UI
         
-        title=text_format("Nutrition-Expert", font, 100, white)
+        title=text_format("Introduction", font, 90, white)
+        menu=text_format("Menu", font, 85, white)
 
-        #select Select Mode in the menu
-        if selected=="Select Mode":
-            text_sm=text_format("Select Mode"+" "*7+"1", font, 75, yellow)
-        else:
-            text_sm = text_format("Select Mode"+" "*7+"1", font, 75, white)
-
-        #select Calcium in the menu
-        if selected=="Introduction":
-            text_introduction=text_format("Introduction"+" "*7+"2", font, 75, yellow)
-        else:
-            text_introduction = text_format("Introduction"+" "*7+"2", font, 75, white)
-
-      
         
+        #select back in the menu
+        text_back=text_format("Back", font, 75, yellow)
         title_rect=title.get_rect()
 
         # Main Menu Text
         screen.blit(title, (screen_width/2 - (title_rect[2]/2), 20))
-        screen.blit(text_sm, (screen_width/6, 180))
-        screen.blit(text_introduction, (screen_width/6, 280))
+        screen.blit(text_back, (screen_width/6, 450))
         pygame.display.update()
         clock.tick(FPS)
-
-        
-
         pygame.display.set_caption("Nutrition-Expert")
 
 #Initialize the Game
-main_menu()
-pygame.quit()
-quit()
+introduction()

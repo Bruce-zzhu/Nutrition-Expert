@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 import os
 
-from menu.selectModeMenu import selectModeMenu
+
 
 # Game Initialization
 pygame.init()
@@ -37,7 +37,7 @@ font = "assets/font/HyFWoolBall-2.ttf"
 
 # Main Menu image
 
-picture = pygame.image.load("assets/image/background.png")
+picture = pygame.image.load("assets/image/foods/background.png")
 picture = pygame.transform.scale(picture,(screen_width,screen_height))
 screen.blit(picture,(0,0))
 
@@ -71,7 +71,6 @@ def startGameMenu():
                     if selected=="start":
                         #start the game
                         print("Start")
-                        selectModeMenu()
 
 
                     if selected=="back":
