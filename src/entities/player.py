@@ -1,32 +1,44 @@
-from src.constants import FULL_VALUE, PLAYER_SPEED
+from src.constants import FULL_VALUE, PLAYER_SPEED, IMAGE_FOLDER
 from src.entities.food import Food, Healthy, Unhealthy, Water
 from src.entities.entity import Entity
 
+
 class Player(Entity):
-    
+
     satiation: int
     hydration: int
     scores: int
     move_direction: int
     speed: int
+    image: str
 
     def __init__(self):
-        super().__init__(500, 600, 55, 55, "assets/image/meat.jpg")
+        super().__init__(500, 600, 55, 55, IMAGE_FOLDER + "Idle_1.png")
+        self.image = IMAGE_FOLDER + "Idle_1.png"
         self.satiation = 0
         self.hydration = FULL_VALUE
         self.scores = 0
         self.speed = PLAYER_SPEED
-        self.move_direction = 0 # -1 for left; 0 for stop; 1 for right
-
-    def eat(score):
-        scores+=score
+        self.move_direction = 0  # -1 for left; 0 for stop; 1 for right
 
     def move_left(self):
+        if self.move_direction >= 0:
+            self.image = pygame.transform.flip(IMAGE_FOLDER + "Run_1.png")
+        else:
+            img_idx = self.image[-5:-4]
+            self.image = pygame.transform.flip(
+                IMAGE_FOLDER + "Run_" + str((img_idx + 1) % 4) + ".png"
+            )
         self.move_direction = -1
 
     def move_right(self):
+        if self.move_direction <= 0:
+            self.image = IMAGE_FOLDER + "Run_1.png"
+        else:
+            img_idx = self.image[-5:-4]
+            self.image = IMAGE_FOLDER + "Run_" + str((img_idx + 1) % 4) + ".png"
         self.move_direction = 1
-    
+
     def stop_moving(self):
         self.move_direction = 0
 
@@ -45,7 +57,7 @@ class Player(Entity):
         if isinstance(food, Water) or isinstance(food, Unhealthy):
             hydration += food.hydration
 
-    def tick(self, delta: int, objects: 'list'):
+    def tick(self, delta: int, objects: "list"):
         self.velocity.x = self.speed * self.move_direction
 
         # check colliction with food

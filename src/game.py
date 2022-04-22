@@ -43,7 +43,6 @@ class Game:
 
     def handle_input(self, events):
         for event in events:
-
             if event.type == pygame.KEYDOWN:
                 # menu
                 # if event.key == K_UP:
@@ -64,7 +63,6 @@ class Game:
                     self.player.stop_moving()
                 if event.key == K_RIGHT and self.player.move_direction > 0:
                     self.player.stop_moving()
-
 
     def generate_food(x: int):
         rand_fname = FOOD_PROPS["nutrients"][stage][
@@ -112,18 +110,22 @@ class Game:
     def render(self, display, font):
         # load background
         picture = pygame.image.load("assets/image/background.png")
-        picture = pygame.transform.scale(picture,(SCREEN_W, SCREEN_H))
+        picture = pygame.transform.scale(picture, (SCREEN_W, SCREEN_H))
         display.blit(picture, (0, 0))
 
         for obj in self.entities:
             if isinstance(obj, Player):
                 obj.render(display)
 
-        self.render_text(display, font, "Nutrition Expert", WHITE, (SCREEN_W//2-70,25))
-        self.render_text(display, font, f"Satisation level: {self.player.satiation}", WHITE, (50,25))
-        self.render_text(display, font, f"Hydration level: {self.player.hydration}", WHITE, (50,50))
-
-
+        self.render_text(
+            display, font, "Nutrition Expert", WHITE, (SCREEN_W // 2 - 70, 25)
+        )
+        self.render_text(
+            display, font, f"Satisation level: {self.player.satiation}", WHITE, (50, 25)
+        )
+        self.render_text(
+            display, font, f"Hydration level: {self.player.hydration}", WHITE, (50, 50)
+        )
 
     def update(self, delta):
         for i in range(len(self.entities) - 1, -1, -1):
@@ -135,6 +137,8 @@ class Game:
             # Execute entity logic
             obj.tick(delta, self.entities)
             obj.move(delta)
+
+
 def generate_food(stage: str):
     x = randint(0, SCREEN_W)
     rand_fname = FOOD_PROPS["nutrients"][stage][
