@@ -15,49 +15,49 @@
         {
             "name": "water",
             "type": "water",
-            "image_url": "./assets/images/water.jpg"
+            "image_url": "./assets/images/foods/water.jpg"
         },
         {
             "name": "coke",
             "type": "unhealthy",
-            "image_url": "./assets/images/coke.png"
+            "image_url": "./assets/images/foods/coke.png"
         },
         {
             "name": "chips",
             "type": "unhealthy",
-            "image_url": "./assets/images/chips.jpg"
+            "image_url": "./assets/images/foods/chips.jpg"
         },
         {
             "name": "orange",
             "type": "healthy",
-            "image_url": "./assets/images/orange.jpg",
+            "image_url": "./assets/images/foods/orange.jpg",
             "vit_c": 53
         },
         {
             "name": "capsicum",
             "type": "healthy",
-            "image_url": "./assets/images/capsicum.svg",
+            "image_url": "./assets/images/foods/capsicum.svg",
             "vit_c": 128,
             "calc": 7
         },
         {
             "name": "broccoli",
             "type": "healthy",
-            "image_url": "./assets/images/broccoli.svg",
+            "image_url": "./assets/images/foods/broccoli.svg",
             "vit_c": 89,
             "calcium": 75
         },
         {
             "name": "almond",
             "type": "healthy",
-            "image_url": "./assets/images/almond.svg",
+            "image_url": "./assets/images/foods/almond.svg",
             "vit_c": 0,
             "fibre": 13
         },
         {
             "name": "milk",
             "type": "healthy",
-            "image_url": "./assets/images/milk.jpg",
+            "image_url": "./assets/images/foods/milk.jpg",
             "vit_c": 0,
             "calc": 113,
             "fibre": 0
@@ -65,7 +65,7 @@
         {
             "name": "bread",
             "type": "healthy",
-            "image_url": "./assets/images/bread.jpg",
+            "image_url": "./assets/images/foods/bread.jpg",
             "vit_c": 0,
             "calc": 260,
             "fibre": 3
@@ -73,21 +73,21 @@
         {
             "name": "avocado",
             "type": "healthy",
-            "image_url": "./assets/images/avocado.jpg",
+            "image_url": "./assets/images/foods/avocado.jpg",
             "calc": 12,
             "fibre": 7
         },
         {
             "name": "meat",
             "type": "healthy",
-            "image_url": "./assets/images/meat.jpg",
+            "image_url": "./assets/images/foods/meat.jpg",
             "calc": 6,
             "fibre": 0
         },
         {
             "name": "bean",
             "type": "healthy",
-            "image_url": "./assets/images/bean.jpg",
+            "image_url": "./assets/images/foods/bean.jpg",
             "fibre": 10
         }
     ]
