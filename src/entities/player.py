@@ -61,17 +61,13 @@ class Player(Entity):
         if isinstance(food, Water) or isinstance(food, Unhealthy):
             self.hydration += food.hydration
         if isinstance(food, Unhealthy):
-            unhealthy_tick = 5
-        if self.satiation >= FULL_VALUE or self.hydration <= 0:
-            pass
-            # GAME OVER LOGIC
+            self.unhealthy_tick = 72
 
     def tick(self, delta: int, objects: "list"):
         flip = False
 
         self.velocity.x = self.speed * self.move_direction
 
-        print(self.ticks)
         if self.ticks == 0:
             img_idx = self.full_image_path[-5:-4]
             if not img_idx.isdigit():
@@ -81,6 +77,7 @@ class Player(Entity):
         if self.unhealthy_tick > 0:
             self.full_image_path = PLAYER_IMAGE_PATH + "Dead.png"
             self.unhealthy_tick -= 1
+            flip = self.move_direction < 0
         elif self.move_direction != 0:
             self.full_image_path = (
                 PLAYER_IMAGE_PATH + "Run_" + str(self.ticks % 4) + ".png"
@@ -104,6 +101,7 @@ class Player(Entity):
                 self.eat(obj)
 
         if self.satiation == FULL_VALUE or self.hydration == 0:
+            # GAME OVER LOGIC
             self.kill()
 
     def loadImg(self):

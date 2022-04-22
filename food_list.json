@@ -15,7 +15,7 @@
         {
             "name": "almond",
             "type": "healthy",
-            "image_url": "./assets/image/foods/almond.svg",
+            "image_url": "./assets/image/foods/almond.png",
             "vit_c": 0,
             "fibre": 13
         },
@@ -50,7 +50,7 @@
         {
             "name": "capsicum",
             "type": "healthy",
-            "image_url": "./assets/image/foods/capsicum.svg",
+            "image_url": "./assets/image/foods/capsicum.png",
             "vit_c": 128,
             "calc": 7
         },
