@@ -17,7 +17,6 @@ screen=pygame.display.set_mode((screen_width, screen_height))
 def text_format(message, textFont, textSize, textColor):
     newFont=pygame.font.Font(textFont, textSize)
     newText=newFont.render(message, 0, textColor)
-
     return newText
 
 
@@ -45,15 +44,15 @@ FPS=30
 
 #====================================================
 
-COLOR_INACTIVE = pygame.Color(white)
-COLOR_ACTIVE = pygame.Color(white)
+COLOR_INACTIVE = pygame.Color(yellow)
+COLOR_ACTIVE = pygame.Color(yellow)
 FONT = pygame.font.Font(None, 32)
 
 class InputBox:
 
     def __init__(self, x, y, w, h, text=''):
         self.rect = pygame.Rect(x, y, w, h)
-        self.color = pygame.Color(white)
+        self.color = pygame.Color(yellow)
         self.text = text
         self.txt_surface = FONT.render(text, True, self.color)
         self.active = False
@@ -93,9 +92,11 @@ class InputBox:
 def main_menu():
 
     menu=True
+    selected="Enter"
+
 
     clock = pygame.time.Clock()
-    input_box1 = InputBox(80, 210, 340, 60)
+    input_box1 = InputBox(80, 150, 340, 60)
     input_boxes = [input_box1]
 
     while menu:
@@ -103,8 +104,25 @@ def main_menu():
             if event.type==pygame.QUIT:
                 pygame.quit()
                 quit()
-            for box in input_boxes:
-                box.handle_event(event)
+
+       
+            if event.type==pygame.KEYDOWN:
+                if event.key==pygame.K_UP:
+                    selected="Enter"
+                elif event.key==pygame.K_DOWN :
+                    selected="Back"
+                elif event.key == pygame.K_RETURN:
+                    if selected=="Enter":
+                        print(input_box1.text)
+                    if selected=="Back":
+                        print("Back")
+                   
+                elif event.key == pygame.K_BACKSPACE:
+                    input_box1.text = input_box1.text[:-1]
+                else:
+                    input_box1.text += event.unicode
+                # Re-render the text.
+                input_box1.txt_surface = FONT.render(input_box1.text, True, input_box1.color)
 
         for box in input_boxes:
             box.update()
@@ -112,13 +130,25 @@ def main_menu():
         for box in input_boxes:
             box.draw(screen)
 
-        title=text_format("Please Input User Name", font, 90, yellow) 
-        enter_text=text_format("PRESS ENTER IF FINISH", font, 35, white)    
+        #select Enter in the menu
+        if selected=="Enter":
+            text_enter=text_format("Enter"+" "*7+"1", font, 75, yellow)
+        else:
+            text_enter = text_format("Enter"+" "*7+"1", font, 75, white)
+
+        #select Calcium in the menu
+        if selected=="Back":
+            text_back=text_format("Back"+" "*7+"2", font, 75, yellow)
+        else:
+            text_back = text_format("Back"+" "*7+"2", font, 75, white)
+
+        title=text_format("Please Input User Name", font, 90, yellow)  
         title_rect=title.get_rect()
 
         # Main Menu Text
         screen.blit(title, (screen_width/2 - (title_rect[2]/2), 20))
-        screen.blit(enter_text, (screen_width/2 - (title_rect[2]/2), 150))
+        screen.blit(text_enter, (screen_width/2 - (title_rect[2]/2), 250))
+        screen.blit(text_back, (screen_width/2 - (title_rect[2]/2), 350))
         pygame.display.update()
         clock.tick(FPS)
         pygame.display.set_caption("Nutrition-Expert")
