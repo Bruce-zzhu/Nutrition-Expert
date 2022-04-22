@@ -109,7 +109,7 @@ def main_menu():
         screen.blit(text_quit, (screen_width/5, 360))
         pygame.display.update()
         clock.tick(FPS)
-
+        
         
 
         pygame.display.set_caption("Nutrition-Expert")

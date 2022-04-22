@@ -3,6 +3,7 @@ import pygame
 from pygame.locals import K_RIGHT, K_SPACE, K_DOWN, K_UP, K_LEFT, K_ESCAPE
 from sqlalchemy import null
 from src.entities.player import Player
+from src.entities.food import Food
 
 class Game:
     entities: list
@@ -20,7 +21,7 @@ class Game:
 
     def set_mode(self, mode):
         self.mode = mode
-    
+
     def handle_input(self, events):
         for event in events:
 
@@ -45,3 +46,13 @@ class Game:
                 if event.key == K_RIGHT and self.player.move_direction > 0:
                     self.player.stop_moving()
                 
+    def update(self, delta):
+        for i in range(len(self.entities) - 1, -1, -1):
+            obj = self.entities[i]
+            # delete the food that has been eaten
+            if obj.expired:
+                del self.entities[i]
+            
+            # Execute entity logic
+            obj.tick(delta, self.entities)
+            obj.move(delta)
