@@ -11,8 +11,6 @@ class Entity(pygame.Rect):
         super().__init__(x, y, width, height)
         self.velocity = pygame.Vector2()  # (0, 0)
         self.expired = False
-        print(f"\n\n\n\n{image}\n\n\n\n")
-        self.image = pygame.image.load(image)
         self.image = pygame.transform.smoothscale(
             pygame.image.load(image), (width, height)
         )

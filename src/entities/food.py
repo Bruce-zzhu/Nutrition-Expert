@@ -14,19 +14,18 @@ class Food(Entity):
     eaten: bool
 
     def __init__(self, params):
-        Entity.__init__(
-            self,
+        super().__init__(
             params[F_PARAMS["X"]],
             0,
             params[F_PARAMS["WIDTH"]],
             params[F_PARAMS["HEIGHT"]],
-            pygame.image.load(params[F_PARAMS["FOOD"]]["image_url"]),
+            params[F_PARAMS["FOOD"]]["image_url"],
         )
 
         self.eaten = False
         self.velocity = (0, FOOD_STATS["FOOD_VEL"])
 
-    def tick(self, delta, objects):
+    def tick(self, delta: int, objects: "list"):
         if self.eaten or self.y < 0 or self.y > SCREEN_H:
             self.kill()
 
@@ -39,8 +38,10 @@ class Healthy(Food):
         self.score = FOOD_STATS["H_SCORE"]
         self.satiation = FOOD_STATS["SATIATION"]
         self.nutrition = defaultdict(int)
-        for nutrient in params[F_PARAMS["NUTRIENTS"]]:
-            self.nutrition[nutrient] = params[F_PARAMS["FOOD"]][nutrient]
+
+        self.nutrition[params[F_PARAMS["STAGE"]]] = params[F_PARAMS["FOOD"]][
+            params[F_PARAMS["STAGE"]]
+        ]
 
 
 class Water(Food):

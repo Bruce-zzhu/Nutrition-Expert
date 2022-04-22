@@ -16,7 +16,6 @@ PLAYER_SIZE = 100
 FULL_VALUE = 100
 
 FOOD_IMAGE_PATH = "assets/image/foods/"
-
 FOOD_STATS = {
     "FOODS": "./food_list.json",
     "FOOD_VEL": 5,
@@ -28,4 +27,4 @@ FOOD_STATS = {
     "U_FIBRE": 2,
 }
 
-F_PARAMS = {"NUTRIENTS": 0, "FOOD": 1, "X": 2, "WIDTH": 3, "HEIGHT": 4, "Y": 0}
+F_PARAMS = {"NUTRIENTS": 0, "FOOD": 1, "X": 2, "WIDTH": 3, "HEIGHT": 4, "STAGE": 5}

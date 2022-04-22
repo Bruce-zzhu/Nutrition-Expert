@@ -71,6 +71,7 @@ class Game:
                             x,
                             img.get_width(),
                             img.get_height(),
+                            self.stage,
                         ]
                     )
                 elif food["type"] == "water":
@@ -81,6 +82,7 @@ class Game:
                             x,
                             img.get_width(),
                             img.get_height(),
+                            self.stage,
                         ]
                     )
                 elif food["type"] == "unhealthy":
@@ -91,6 +93,7 @@ class Game:
                             x,
                             img.get_width(),
                             img.get_height(),
+                            self.stage,
                         ]
                     )
         return False
