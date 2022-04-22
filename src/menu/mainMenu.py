@@ -59,8 +59,6 @@ def main_menu():
                     selected="Select Mode"
                 elif event.key==pygame.K_DOWN :
                     selected="Introduction"
-                
-
 
                 if event.key==pygame.K_RETURN:
                     if selected=="Select Mode":

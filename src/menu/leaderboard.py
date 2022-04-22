@@ -2,21 +2,7 @@ import pygame
 from pygame.locals import *
 import os
 
-### SET LEADERBOARD DATA ###
-username = {
-    1: "top1 nameeeeee",
-    2: "nameeeee",
-    3: "22",
-    4: "namaajsnxkjnlksx",
-    5: "0ijnbjijnnk"
-}
-score = {
-    1: "12",
-    2: "3211",
-    3: "111",
-    4: "22",
-    5: "9292"
-}
+
 
 # Game Initialization
 pygame.init()
@@ -67,58 +53,28 @@ def main():
     running = True
 
     while running:
+
+        ### SET LEADERBOARD DATA ###
+        username = {
+            1: "top1 nameeeeee",
+            2: "nameeeee",
+            3: "22",
+            4: "namaajsnxkjnlksx",
+            5: "0ijnbjijnnk"
+        }
+        score = {
+            1: "12",
+            2: "3211",
+            3: "111",
+            4: "22",
+            5: "9292"
+        }
+
         # pygame.QUIT listener
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 pygame.quit()
                 quit()
-<<<<<<< HEAD
-=======
-            if event.type==pygame.KEYDOWN:
-                if event.key==pygame.K_UP and selected !="history":
-                    selected="start"
-                elif event.key==pygame.K_DOWN and selected !="start":
-                    selected="history"
-                elif event.key!=pygame.K_RETURN:
-                    selected="practice"
-
-
-
-                if event.key==pygame.K_RETURN:
-                    if selected=="start":
-                        #start the game
-                        print("Start")
-
-                    if selected=="history":
-                        print("history")
-
-                    if selected=="practice":
-                        #给出记录
-                        print("practice")
-
-        # Main Menu UI
-        title=text_format("Nutrition-Expert", font, 100, white)
-        menu=text_format("Menu", font, 85, white)
-
-        #select start in the menu
-        if selected=="start":
-            text_start=text_format("Start"+" "*20+"1", font, 75, yellow)
-        else:
-            text_start = text_format("Start"+" "*20+"1", font, 75, white)
-
-        #select history in the menu
-        if selected=="practice":
-            text_practice=text_format("Practice"+" "*16+"2", font, 75, yellow)
-        else:
-            text_practice = text_format("Practice"+" "*16+"2", font, 75, white)
-
-        #select quit in the menu
-        if selected=="history":
-            text_history=text_format("History"+" "*18+"3", font, 75, yellow)
-        else:
-            text_history = text_format("History"+" "*18+"3", font, 75, white)
-
->>>>>>> dc1bde52b08548b3e793935c9a3312bb85bc3cc4
         
         # Set display title
         title = text_format("Game Leaderboard", font, 100, white)
@@ -141,6 +97,8 @@ def main():
         # Set screen blits
         screen.blit(title, title_position)
         screen.blit(selectable_back, selectable_back_pos)
+
+        
         for i in range(1, len(username) + 1):
             # Make Surfaces and update username and score dictionaries
             username[i] = text_format_for_listing(username[i])
@@ -153,15 +111,8 @@ def main():
         # Update display
         pygame.display.update()
         clock.tick(FPS)
-<<<<<<< HEAD
 
         ### END OF LEADERBOARD WHILE LOOP ###
-=======
-        
-        
-
-        pygame.display.set_caption("Nutrition-Expert")
->>>>>>> dc1bde52b08548b3e793935c9a3312bb85bc3cc4
 
 #Initialize the Game
 main()
