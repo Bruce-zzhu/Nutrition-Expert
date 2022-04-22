@@ -9,9 +9,10 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 # player properties
-PLAYER_SPEED = 0.8
+PLAYER_SPEED = 0.5
 PLAYER_IMAGE_PATH = "assets/image/player/"
 PLAYER_DEFAULT_IMG = "Idle_0.png"
+PLAYER_SIZE = 100
 FULL_VALUE = 100
 
 FOOD_IMAGE_PATH = "assets/image/foods/"

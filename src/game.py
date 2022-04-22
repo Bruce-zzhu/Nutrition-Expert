@@ -41,27 +41,19 @@ class Game:
         self.mode = mode
 
     def handle_input(self, events):
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            self.player.move_left()
+        elif keys[pygame.K_RIGHT]:
+            self.player.move_right()
+        else:
+            self.player.stop_moving()
         for event in events:
             if event.type == pygame.KEYDOWN:
-                # menu
-                # if event.key == K_UP:
-                #     pass
-                # elif event.key == K_DOWN:
-                #     pass
-                if event.key == K_LEFT:
-                    self.player.move_left()
-                elif event.key == K_RIGHT:
-                    self.player.move_right()
-                elif event.key == K_ESCAPE:
+                if event.key == K_ESCAPE:
                     print("Game exited")
                     pygame.quit()
                     exit()
-
-            if event.type == K_UP:
-                if event.key == K_LEFT and self.player.move_direction < 0:
-                    self.player.stop_moving()
-                if event.key == K_RIGHT and self.player.move_direction > 0:
-                    self.player.stop_moving()
 
     def generate_food(x: int):
         rand_fname = FOOD_PROPS["nutrients"][stage][

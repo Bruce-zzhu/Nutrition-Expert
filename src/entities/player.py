@@ -4,8 +4,7 @@ from src.constants import (
     PLAYER_SPEED,
     PLAYER_IMAGE_PATH,
     PLAYER_DEFAULT_IMG,
-    SCREEN_H,
-    SCREEN_W,
+    PLAYER_SIZE,
 )
 from src.entities.food import Food, Healthy, Unhealthy, Water
 from src.entities.entity import Entity
@@ -21,7 +20,9 @@ class Player(Entity):
     ticks: int
 
     def __init__(self):
-        super().__init__(500, 100, 55, 55, PLAYER_IMAGE_PATH + PLAYER_DEFAULT_IMG)
+        super().__init__(
+            500, 600, PLAYER_SIZE, PLAYER_SIZE, PLAYER_IMAGE_PATH + PLAYER_DEFAULT_IMG
+        )
         self.full_image_path = PLAYER_IMAGE_PATH + PLAYER_DEFAULT_IMG
         self.image = self.loadImg()
         self.satiation = 0
@@ -58,6 +59,8 @@ class Player(Entity):
             self.image = PLAYER_IMAGE_PATH + "Dead.png"
 
     def tick(self, delta: int, objects: "list"):
+        face_right = self.velocity.x >= 0
+
         self.velocity.x = self.speed * self.move_direction
         self.ticks = (self.ticks + 1) % 18
 
@@ -70,14 +73,13 @@ class Player(Entity):
                 self.full_image_path = (
                     PLAYER_IMAGE_PATH + "Run_" + str((int(img_idx) + 1) % 4) + ".png"
                 )
-                if self.move_direction < 0:
-                    self.image = pygame.transform.flip(self.loadImg(), True, False)
-                else:
-                    self.image = self.loadImg()
             else:
                 self.full_image_path = (
                     PLAYER_IMAGE_PATH + "Idle_" + str((int(img_idx) + 1) % 4) + ".png"
                 )
+            if not face_right:
+                self.image = pygame.transform.flip(self.loadImg(), True, False)
+            else:
                 self.image = self.loadImg()
 
         # check colliction with food
@@ -90,4 +92,11 @@ class Player(Entity):
 
     def loadImg(self):
         image = pygame.image.load(self.full_image_path)
-        return pygame.transform.scale(image, (SCREEN_W / 8, SCREEN_H / 8))
+        image = pygame.transform.chop(
+            image,
+            (
+                (image.get_width() / 2, image.get_height()),
+                (image.get_width(), image.get_height()),
+            ),
+        )
+        return pygame.transform.scale(image, (self.width, self.height))
