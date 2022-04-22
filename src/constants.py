@@ -8,6 +8,9 @@ FPS = 144
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
+# player properties
+PLAYER_SPEED = 0.8
+
 FULL_VALUE = 100
 FOOD_STATS = {
     "FOODS": "./food_list.json",

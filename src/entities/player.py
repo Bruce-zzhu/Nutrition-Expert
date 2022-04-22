@@ -1,4 +1,4 @@
-from src.constants import FULL_VALUE
+from src.constants import FULL_VALUE, PLAYER_SPEED
 from src.entities.food import Food, Healthy, Unhealthy, Water
 from src.entities.entity import Entity
 
@@ -11,10 +11,12 @@ class Player(Entity):
     speed: int
 
     def __init__(self):
-        super().__init__()
+        super().__init__(500, 600, 55, 55, "assets/image/meat.jpg")
         self.satiation = 0
         self.hydration = FULL_VALUE
         self.scores = 0
+        self.speed = PLAYER_SPEED
+        self.move_direction = 0 # -1 for left; 0 for stop; 1 for right
 
     def eat(score):
         scores+=score

@@ -2,6 +2,7 @@ from dis import dis
 import enum
 import json
 import random
+from numpy import isin
 import pygame
 from pygame import Color, Vector2
 from random import randint
@@ -113,6 +114,10 @@ class Game:
         picture = pygame.image.load("assets/image/background.png")
         picture = pygame.transform.scale(picture,(SCREEN_W, SCREEN_H))
         display.blit(picture, (0, 0))
+
+        for obj in self.entities:
+            if isinstance(obj, Player):
+                obj.render(display)
 
         self.render_text(display, font, "Nutrition Expert", WHITE, (SCREEN_W//2-70,25))
         self.render_text(display, font, f"Satisation level: {self.player.satiation}", WHITE, (50,25))

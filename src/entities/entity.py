@@ -7,11 +7,11 @@ class Entity(pygame.Rect):
     image: pygame.Surface
     expired: bool  # for entity to disappear or not
 
-    def __init__(self, x, y, width, height, image):
+    def __init__(self, x, y, width, height, image: str):
         super().__init__(x, y, width, height)
         self.velocity = pygame.Vector2()  # (0, 0)
         self.expired = False
-        self.image = pygame.transform.smoothscale(image, (width, height))
+        self.image = pygame.transform.smoothscale(pygame.image.load(image), (width, height))
 
     def render(self, display: pygame.Surface):
         display.blit(self.image, (self.x, self.y))

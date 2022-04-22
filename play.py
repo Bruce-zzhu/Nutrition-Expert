@@ -26,7 +26,7 @@ def main():
         for e in events:
             if e.type == pygame.QUIT:
                 running = False
-        break
+        
 
 
 if __name__ == "__main__":
