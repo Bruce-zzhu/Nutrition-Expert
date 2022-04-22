@@ -5,6 +5,7 @@ from pygame.locals import K_RIGHT, K_SPACE, K_DOWN, K_UP, K_LEFT, K_ESCAPE
 from sqlalchemy import null
 from src.entities.player import Player
 from src.constants import FOOD_STATS
+from src.entities.food import *
 
 food_path = FOOD_STATS["FOODS"]
 with open(food_path, "r") as f:
@@ -91,3 +92,15 @@ def generate_food(x: int):
                     ]
                 )
     return False
+
+
+def update(self, delta):
+    for i in range(len(self.entities) - 1, -1, -1):
+        obj = self.entities[i]
+        # delete the food that has been eaten
+        if obj.expired:
+            del self.entities[i]
+
+        # Execute entity logic
+        obj.tick(delta, self.entities)
+        obj.move(delta)
