@@ -7,6 +7,7 @@ FPS = 144
 # colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+YELLOW = (255, 255, 0)
 
 # player properties
 PLAYER_SPEED = 0.75
@@ -29,5 +30,25 @@ FOOD_STATS = {
     "SHRINKAGE": 4,
     "MAX_SIZE": 50,
 }
+
+
+
+# nutrients
+VIT_C = "Vitamin_C"
+CALCIUM = "Calcium"
+FIBRE = "Fibre"
+
+
+# game status & menu state
+GAME = "game"
+MENU = "menu"
+MAIN_MENU = "main_menu"
+SELECT_MENU = "select_mode"
+START_READY = "start_game"
+INTRO_MENU = "intro_menu"
+BACK = "Back"
+START = "Start"
+PRACTICE = "Practice"
+
 
 F_PARAMS = {"NUTRIENTS": 0, "FOOD": 1, "X": 2, "WIDTH": 3, "HEIGHT": 4, "STAGE": 5}

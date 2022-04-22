@@ -1,5 +1,3 @@
-from dis import dis
-import enum
 import json
 from time import sleep
 import pygame
@@ -7,9 +5,9 @@ from pygame import Color, Vector2
 from random import randint, choice
 from pygame.locals import K_RIGHT, K_SPACE, K_DOWN, K_UP, K_LEFT, K_ESCAPE
 from src.entities.player import Player
-from src.constants import FOOD_STATS, SCREEN_W, SCREEN_H, BLACK, WHITE
-from src.constants import FOOD_STATS, FPS, SCREEN_W
+from src.constants import FOOD_STATS, FPS, SCREEN_W, SCREEN_H, BLACK, WHITE
 from src.entities.food import *
+from src.menu import Menu
 
 food_path = FOOD_STATS["FOODS"]
 with open(food_path, "r") as f:
@@ -18,11 +16,7 @@ with open(food_path, "r") as f:
 
 class Game:
     entities: list
-    mode: enum
-
-    ## placeholder stage value
-    stage = "vit_c"
-
+    mode: str
     time_passed: int
 
     def __init__(self):
@@ -49,10 +43,20 @@ class Game:
             self.player.stop_moving()
         for event in events:
             if event.type == pygame.KEYDOWN:
-                if event.key == K_ESCAPE:
+                if event.key == K_LEFT:
+                    self.player.move_left()
+                elif event.key == K_RIGHT:
+                    self.player.move_right()
+                elif event.key == K_ESCAPE:
                     print("Game exited")
                     pygame.quit()
                     exit()
+
+            # if event.type == K_UP:
+            #     if event.key == K_LEFT and self.player.move_direction < 0:
+            #         self.player.stop_moving()
+            #     if event.key == K_RIGHT and self.player.move_direction > 0:
+            #         self.player.stop_moving()
 
     def generate_food(self):
         x = randint(0, SCREEN_W)
