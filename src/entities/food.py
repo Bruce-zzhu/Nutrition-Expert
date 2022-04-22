@@ -1,12 +1,13 @@
 from collections import defaultdict
-from play import FOODS
 import pygame
+
+# from enum import Enum
 
 from src.entities.entity import Entity
 
-from src.constants import FOOD_STATS, F_PARAMS
+from src.constants import SCREEN_H, FOOD_STATS, F_PARAMS
 
-
+# nutrients = Enum("nutrients", "vit_c calc fibre")
 class Food(Entity):
     satiation: int
     score: int
@@ -17,8 +18,9 @@ class Food(Entity):
         eaten = False
         self.velocity = (0, FOOD_STATS["FOOD_VEL"])
 
-    def add_stats(self):
-        pass
+    def tick(self, delta, objects):
+        if self.eaten or self.y < 0 or self.y > SCREEN_H:
+            self.kill()
 
 
 class Healthy(Food):
@@ -32,9 +34,6 @@ class Healthy(Food):
         for nutrient in params[F_PARAMS["NUTRIENTS"]]:
             nutrition[nutrient] = params[F_PARAMS["FOOD"]][nutrient]
 
-    def add_stats(self):
-        return
-
 
 class Water(Food):
     hydration: int
@@ -45,20 +44,15 @@ class Water(Food):
         score = FOOD_STATS["W_SCORE"]
         satiation = 0
 
-    def add_stats(self):
-        return
-
 
 class Unhealthy(Food):
     hydration: int
-    fibre: int
+    nutrition: dict
 
     def __init__(self, params):
         super(self, params)
         score = FOOD_STATS["U_SCORE"]
         hydration = -FOOD_STATS["HYDRATION"]
-        fibre = 2
+        nutrition = defaultdict(int)
+        nutrition["fibre"] = FOOD_STATS["U_FIBRE"]
         satiation = FOOD_STATS["SATIATION"]
-
-    def add_stats(self):
-        return
