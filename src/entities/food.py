@@ -1,11 +1,13 @@
 from collections import defaultdict
 import pygame
 
+# from enum import Enum
+
 from src.entities.entity import Entity
 
 from src.constants import SCREEN_H, FOOD_STATS, F_PARAMS
 
-
+# nutrients = Enum("nutrients", "vit_c calc fibre")
 class Food(Entity):
     satiation: int
     score: int

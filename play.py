@@ -1,4 +1,3 @@
-import random
 import pygame
 from src.constants import SCREEN_W, SCREEN_H, FPS, FOOD_STATS
 import json
