@@ -2,6 +2,8 @@ import pygame
 from pygame.locals import *
 import os
 
+from menu.selectModeMenu import selectModeMenu
+
 # Game Initialization
 pygame.init()
 
@@ -45,7 +47,7 @@ clock = pygame.time.Clock()
 FPS=30
 
 # Main Menu
-def main_menu():
+def startGameMenu():
 
     menu=True
     selected="start"
@@ -69,6 +71,8 @@ def main_menu():
                     if selected=="start":
                         #start the game
                         print("Start")
+                        selectModeMenu()
+
 
                     if selected=="back":
                         print("back")
@@ -116,6 +120,4 @@ def main_menu():
         pygame.display.set_caption("Nutrition-Expert")
 
 #Initialize the Game
-main_menu()
-pygame.quit()
-quit()
+startGameMenu()
