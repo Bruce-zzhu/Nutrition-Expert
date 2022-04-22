@@ -1,3 +1,4 @@
+from urllib.request import proxy_bypass
 import pygame
 from src.constants import (
     FULL_VALUE,
@@ -58,7 +59,10 @@ class Player(Entity):
         if isinstance(food, Water) or isinstance(food, Unhealthy):
             self.hydration += food.hydration
         if isinstance(food, Unhealthy):
-            self.image = PLAYER_IMAGE_PATH + "Dead.png"
+            self.full_image_path = PLAYER_IMAGE_PATH + "Dead.png"
+        if self.satiation >= FULL_VALUE or self.hydration <= 0:
+            pass
+            # GAME OVER LOGIC
 
     def tick(self, delta: int, objects: "list"):
         if self.prev_direction < 0:
@@ -71,7 +75,7 @@ class Player(Entity):
 
         if self.ticks == 0:
             img_idx = self.full_image_path[-5:-4]
-            if not img_idx.isdigit:
+            if not img_idx.isdigit():
                 img_idx = 0
 
             if self.move_direction != 0:

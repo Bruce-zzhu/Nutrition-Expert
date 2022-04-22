@@ -136,7 +136,7 @@ class Game:
             obj.tick(delta, self.entities)
             obj.move(delta)
 
-        # generate food every 2 seconds
+        # generate food every FOOD_FREQ seconds
         if self.time_passed == 0:
             self.generate_food()
-        self.time_passed = (self.time_passed + 1) % (FPS * 2)
+        self.time_passed = (self.time_passed + 1) % (FPS * FOOD_STATS["FOOD_FREQ"])
