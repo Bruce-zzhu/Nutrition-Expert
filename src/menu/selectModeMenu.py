@@ -45,7 +45,7 @@ clock = pygame.time.Clock()
 FPS=30
 
 # Main Menu
-@staticmethod
+
 def selectModeMenu():
 
     menu=True
