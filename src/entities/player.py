@@ -1,7 +1,8 @@
 from src.constants import FULL_VALUE
 from src.entities.food import Food, Healthy, Unhealthy, Water
+from src.entities.entity import Entity
 
-class player:
+class Player(Entity):
     
     satiation: int
     hydration: int
@@ -10,6 +11,7 @@ class player:
     speed: int
 
     def __init__(self):
+        super().__init__()
         self.satiation = 0
         self.hydration = FULL_VALUE
         self.scores = 0
