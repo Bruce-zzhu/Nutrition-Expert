@@ -4,7 +4,7 @@ import pygame
 
 from src.entities.entity import Entity
 
-from src.constants import FOOD_STATS, F_PARAMS
+from src.constants import SCREEN_H, FOOD_STATS, F_PARAMS
 
 
 class Food(Entity):
@@ -16,6 +16,10 @@ class Food(Entity):
         Entity.__init__(self, params.append(0))
         eaten = False
         self.velocity = (0, FOOD_STATS["FOOD_VEL"])
+
+    def tick(self, delta, objects):
+        if self.eaten or self.y < 0 or self.y > SCREEN_H:
+            self.kill()
 
 
 class Healthy(Food):
