@@ -16,6 +16,8 @@ class Entity(pygame.Rect):
         )
 
     def render(self, display: pygame.Surface):
+        if isinstance(self.image, str):
+            print(self.image)
         display.blit(self.image, (self.x, self.y))
 
     def move(self, delta: int):

@@ -1,3 +1,4 @@
+from urllib.request import proxy_bypass
 import pygame
 from src.constants import (
     FULL_VALUE,
@@ -19,6 +20,7 @@ class Player(Entity):
     speed: int
     ticks: int
     prev_direction: int
+    unhealthy_tick: int
 
     def __init__(self):
         super().__init__(
@@ -33,6 +35,7 @@ class Player(Entity):
         self.move_direction = 0  # -1 for left; 0 for stop; 1 for right
         self.prev_direction = 0
         self.ticks = 0
+        self.unhealthy_tick = 0
 
     def move_left(self):
         self.move_direction = -1
@@ -58,33 +61,39 @@ class Player(Entity):
         if isinstance(food, Water) or isinstance(food, Unhealthy):
             self.hydration += food.hydration
         if isinstance(food, Unhealthy):
-            self.image = PLAYER_IMAGE_PATH + "Dead.png"
+            self.unhealthy_tick = 72
 
     def tick(self, delta: int, objects: "list"):
-        if self.prev_direction < 0:
-            self.image = pygame.transform.flip(self.loadImg(), True, False)
-        else:
-            self.image = self.loadImg()
+        flip = False
 
         self.velocity.x = self.speed * self.move_direction
-        self.ticks = (self.ticks + 1) % 18
 
         if self.ticks == 0:
             img_idx = self.full_image_path[-5:-4]
-            if not img_idx.isdigit:
+            if not img_idx.isdigit():
                 img_idx = 0
+        self.ticks = (self.ticks + 1) % 18
 
-            if self.move_direction != 0:
-                self.full_image_path = (
-                    PLAYER_IMAGE_PATH + "Run_" + str((int(img_idx) + 1) % 4) + ".png"
-                )
-            else:
-                self.full_image_path = (
-                    PLAYER_IMAGE_PATH + "Idle_" + str((int(img_idx) + 1) % 4) + ".png"
-                )
+        if self.unhealthy_tick > 0:
+            self.full_image_path = PLAYER_IMAGE_PATH + "Dead.png"
+            self.unhealthy_tick -= 1
+            flip = self.move_direction < 0
+        elif self.move_direction != 0:
+            self.full_image_path = (
+                PLAYER_IMAGE_PATH + "Run_" + str(self.ticks % 4) + ".png"
+            )
+            self.prev_direction = self.move_direction
+            flip = self.move_direction < 0
+        else:
+            self.full_image_path = (
+                PLAYER_IMAGE_PATH + "Idle_" + str(self.ticks % 4) + ".png"
+            )
+            flip = self.prev_direction < 0
 
-            if self.move_direction != 0:
-                self.prev_direction = self.move_direction
+        if flip:
+            self.image = pygame.transform.flip(self.loadImg(), True, False)
+        else:
+            self.image = self.loadImg()
 
         # check colliction with food
         for obj in objects:
@@ -92,6 +101,7 @@ class Player(Entity):
                 self.eat(obj)
 
         if self.satiation == FULL_VALUE or self.hydration == 0:
+            # GAME OVER LOGIC
             self.kill()
 
     def loadImg(self):

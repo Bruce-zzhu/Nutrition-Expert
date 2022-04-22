@@ -25,6 +25,9 @@ class Food(Entity):
         self.eaten = False
         self.velocity.x = 0
         self.velocity.y = FOOD_STATS["FOOD_VEL"]
+        self.image = pygame.transform.scale(
+            self.image, (FOOD_STATS["MAX_SIZE"], FOOD_STATS["MAX_SIZE"])
+        )
 
     def tick(self, delta: int, objects: "list"):
         if self.eaten or self.y < 0 or self.y > SCREEN_H:
@@ -66,3 +69,4 @@ class Unhealthy(Food):
         self.nutrition = defaultdict(int)
         self.nutrition["fibre"] = FOOD_STATS["U_FIBRE"]
         self.satiation = FOOD_STATS["SATIATION"]
+        print(type(self.image))
