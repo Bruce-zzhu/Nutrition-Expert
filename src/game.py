@@ -1,11 +1,10 @@
 from dis import dis
 import enum
 import json
-import random
 from time import sleep
 import pygame
 from pygame import Color, Vector2
-from random import randint
+from random import randint, choice
 from pygame.locals import K_RIGHT, K_SPACE, K_DOWN, K_UP, K_LEFT, K_ESCAPE
 from src.entities.player import Player
 from src.constants import FOOD_STATS, SCREEN_W, SCREEN_H, BLACK, WHITE
@@ -57,44 +56,48 @@ class Game:
 
     def generate_food(self):
         x = randint(0, SCREEN_W)
-        rand_fname = FOOD_PROPS["nutrients"][self.stage][
-            randint(0, len(FOOD_PROPS["nutrients"][self.stage]))
-        ]
+        rand_fname = choice(FOOD_PROPS["nutrients"][self.stage])
         for food in FOOD_PROPS["foods"]:
             if rand_fname == food["name"]:
                 img = pygame.image.load(food["image_url"])
                 if food["type"] == "healthy":
-                    return Healthy(
-                        [
-                            FOOD_PROPS["nutrients"].keys(),
-                            food,
-                            x,
-                            img.get_width(),
-                            img.get_height(),
-                            self.stage,
-                        ]
+                    self.entities.append(
+                        Healthy(
+                            [
+                                FOOD_PROPS["nutrients"].keys(),
+                                food,
+                                x,
+                                img.get_width(),
+                                img.get_height(),
+                                self.stage,
+                            ]
+                        )
                     )
                 elif food["type"] == "water":
-                    return Water(
-                        [
-                            FOOD_PROPS["nutrients"].keys(),
-                            food,
-                            x,
-                            img.get_width(),
-                            img.get_height(),
-                            self.stage,
-                        ]
+                    self.entities.append(
+                        Water(
+                            [
+                                FOOD_PROPS["nutrients"].keys(),
+                                food,
+                                x,
+                                img.get_width(),
+                                img.get_height(),
+                                self.stage,
+                            ]
+                        )
                     )
                 elif food["type"] == "unhealthy":
-                    return Unhealthy(
-                        [
-                            FOOD_PROPS["nutrients"].keys(),
-                            food,
-                            x,
-                            img.get_width(),
-                            img.get_height(),
-                            self.stage,
-                        ]
+                    self.entities.append(
+                        Unhealthy(
+                            [
+                                FOOD_PROPS["nutrients"].keys(),
+                                food,
+                                x,
+                                img.get_width(),
+                                img.get_height(),
+                                self.stage,
+                            ]
+                        )
                     )
         return False
 
@@ -109,8 +112,8 @@ class Game:
         display.blit(picture, (0, 0))
 
         for obj in self.entities:
-            if isinstance(obj, Player):
-                obj.render(display)
+            # if isinstance(obj, Player) or isinstance(obj, Food):
+            obj.render(display)
 
         self.render_text(
             display, font, "Nutrition Expert", WHITE, (SCREEN_W // 2 - 70, 25)

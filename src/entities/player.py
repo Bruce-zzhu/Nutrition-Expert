@@ -50,13 +50,13 @@ class Player(Entity):
         return self.hydration == 0
 
     def eat(self, food: Food):
-        scores += food.scores
-        satiation += food.satiation
+        self.scores += food.score
+        self.satiation += food.satiation
         food.eaten = True
         if isinstance(food, Healthy) or isinstance(food, Unhealthy):
-            scores += food.nutrition["stage"]
+            self.scores += food.nutrition["stage"]
         if isinstance(food, Water) or isinstance(food, Unhealthy):
-            hydration += food.hydration
+            self.hydration += food.hydration
         if isinstance(food, Unhealthy):
             self.image = PLAYER_IMAGE_PATH + "Dead.png"
 

@@ -18,7 +18,7 @@ FULL_VALUE = 100
 FOOD_IMAGE_PATH = "assets/image/foods/"
 FOOD_STATS = {
     "FOODS": "./food_list.json",
-    "FOOD_VEL": 5,
+    "FOOD_VEL": 0.5,
     "H_SCORE": 10,
     "W_SCORE": 0,
     "U_SCORE": -25,

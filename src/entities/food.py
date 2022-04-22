@@ -23,7 +23,8 @@ class Food(Entity):
         )
 
         self.eaten = False
-        self.velocity = (0, FOOD_STATS["FOOD_VEL"])
+        self.velocity.x = 0
+        self.velocity.y = FOOD_STATS["FOOD_VEL"]
 
     def tick(self, delta: int, objects: "list"):
         if self.eaten or self.y < 0 or self.y > SCREEN_H:
