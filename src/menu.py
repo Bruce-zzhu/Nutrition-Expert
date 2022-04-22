@@ -8,6 +8,7 @@ from src.constants import *
 class Menu():
     def __init__(self):
         self.menu_state = SELECT_MENU
+        self.game_stage = VIT_C
 
     # Text Renderer
     def render_text(self, message, textFont, textSize, textColor):
@@ -99,7 +100,9 @@ class Menu():
                         self.menu_state = SELECT_MENU
                     else:
                         game_status = START_READY
+                        self.game_stage = self.menu_state
                         self.menu_state = START
+                        
 
         return game_status
 

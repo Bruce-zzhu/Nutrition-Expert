@@ -27,6 +27,7 @@ def main():
         events = pygame.event.get()
         
         if status == GAME:
+            game.stage = menu.game_stage
             game.handle_input(events)
             game.update(delta)
             game.render(display, font)

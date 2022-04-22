@@ -5,7 +5,7 @@ from pygame import Color, Vector2
 from random import randint, choice
 from pygame.locals import K_RIGHT, K_SPACE, K_DOWN, K_UP, K_LEFT, K_ESCAPE
 from src.entities.player import Player
-from src.constants import FOOD_STATS, FPS, SCREEN_W, SCREEN_H, BLACK, WHITE
+from src.constants import FOOD_STATS, FPS, SCREEN_W, SCREEN_H, BLACK, VIT_C, WHITE
 from src.entities.food import *
 from src.menu import Menu
 
@@ -22,6 +22,7 @@ class Game:
     def __init__(self):
         self.start_game()
         self.time_passed = 0
+        self.stage = VIT_C
 
     def start_game(self):
         print("Start a new game.")
