@@ -53,7 +53,7 @@ class Player(Entity):
     def is_dehydrated(self):
         return self.hydration == 0
 
-    def eat(food: Food):
+    def eat(self, food: Food):
         scores += food.scores
         satiation += food.satiation
         food.eaten = True
@@ -61,6 +61,8 @@ class Player(Entity):
             scores += food.nutrition["stage"]
         if isinstance(food, Water) or isinstance(food, Unhealthy):
             hydration += food.hydration
+        if isinstance(food, Unhealthy):
+            self.image = IMAGE_FOLDER + "Dead.png"
 
     def tick(self, delta: int, objects: "list"):
         self.velocity.x = self.speed * self.move_direction
