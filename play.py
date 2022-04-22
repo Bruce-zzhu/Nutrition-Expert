@@ -1,7 +1,7 @@
-import random
+from numpy import disp
 import pygame
 from src.constants import SCREEN_W, SCREEN_H, FPS, FOOD_STATS
-import json
+from src.game import Game
 
 from src.entities.food import *
 
@@ -14,14 +14,15 @@ def main():
     font = pygame.font.SysFont("Arial", 24)
 
     running = True
-    # game = Game()
+    game = Game()
     game_clock = pygame.time.Clock()
-
     while running:
         delta = game_clock.tick(FPS)
-
         events = pygame.event.get()
-
+        game.handle_input(events)
+        game.update(delta)
+        game.render(display, font)
+        pygame.display.update()
         for e in events:
             if e.type == pygame.QUIT:
                 running = False

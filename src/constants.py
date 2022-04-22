@@ -4,6 +4,10 @@ SCREEN_H = 700
 # The target framerate of our game. Set to 0 for no limit
 FPS = 144
 
+# colors
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+
 FULL_VALUE = 100
 FOOD_STATS = {
     "FOODS": "./food_list.json",
