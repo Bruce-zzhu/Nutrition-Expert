@@ -31,7 +31,7 @@ blue=(0, 0, 255)
 yellow=(255, 255, 0)
 
 # Game Fonts
-font = "src/menu/HyFWoolBall-2.ttf"
+font = "assets/font/HyFWoolBall-2.ttf"
 
 # Main Menu image
 
@@ -56,10 +56,10 @@ def main_menu():
                 pygame.quit()
                 quit()
             if event.type==pygame.KEYDOWN:
-                if event.key==pygame.K_UP and selected !="history":
+                if event.key==pygame.K_UP and selected !="leaderboard":
                     selected="start"
                 elif event.key==pygame.K_DOWN and selected !="start":
-                    selected="history"
+                    selected="leaderboard"
                 elif event.key!=pygame.K_RETURN:
                     selected="practice"
 
@@ -70,8 +70,8 @@ def main_menu():
                         #start the game
                         print("Start")
 
-                    if selected=="history":
-                        print("history")
+                    if selected=="leaderboard":
+                        print("leaderboard")
 
                     if selected=="practice":
                         #给出记录
@@ -88,26 +88,26 @@ def main_menu():
         else:
             text_start = text_format("Start"+" "*20+"1", font, 75, white)
 
-        #select history in the menu
+
         if selected=="practice":
             text_practice=text_format("Practice"+" "*16+"2", font, 75, yellow)
         else:
             text_practice = text_format("Practice"+" "*16+"2", font, 75, white)
 
         #select quit in the menu
-        if selected=="history":
-            text_history=text_format("History"+" "*18+"3", font, 75, yellow)
+        if selected=="leaderboard":
+            text_leaderboard=text_format("Leaderboard"+" "*10+"3", font, 75, yellow)
         else:
-            text_history = text_format("History"+" "*18+"3", font, 75, white)
+            text_leaderboard = text_format("Leaderboard"+" "*10+"3", font, 75, white)
 
         
         title_rect=title.get_rect()
 
         # Main Menu Text
         screen.blit(title, (screen_width/2 - (title_rect[2]/2), 20))
-        screen.blit(text_start, (screen_width/6, 200))
+        screen.blit(text_start, (screen_width/6, 180))
         screen.blit(text_practice, (screen_width/6, 280))
-        screen.blit(text_history, (screen_width/6, 360))
+        screen.blit(text_leaderboard, (screen_width/6, 380))
         pygame.display.update()
         clock.tick(FPS)
 
