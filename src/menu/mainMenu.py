@@ -34,7 +34,6 @@ yellow=(255, 255, 0)
 font = "assets/font/HyFWoolBall-2.ttf"
 
 # Main Menu image
-
 picture = pygame.image.load("assets/image/background.png")
 picture = pygame.transform.scale(picture,(screen_width,screen_height))
 screen.blit(picture,(0,0))
@@ -48,7 +47,7 @@ FPS=30
 def main_menu():
 
     menu=True
-    selected="start"
+    selected="Select Mode"
 
     while menu:
         for event in pygame.event.get():
@@ -56,58 +55,50 @@ def main_menu():
                 pygame.quit()
                 quit()
             if event.type==pygame.KEYDOWN:
-                if event.key==pygame.K_UP and selected !="back":
-                    selected="start"
-                elif event.key==pygame.K_DOWN and selected !="start":
-                    selected="back"
-                elif event.key!=pygame.K_RETURN:
-                    selected="practice"
-
+                if event.key==pygame.K_UP:
+                    selected="Select Mode"
+                elif event.key==pygame.K_DOWN :
+                    selected="Introduction"
+                
 
 
                 if event.key==pygame.K_RETURN:
-                    if selected=="start":
-                        #start the game
-                        print("Start")
+                    if selected=="Select Mode":
+                        #select vc mode
+                        print("Select Mode")
+                        
 
-                    if selected=="back":
-                        print("back")
+                    if selected=="Introduction":
+                        #select fibre mode
+                        print("Introduction")
 
-                    if selected=="practice":
-                        #给出记录
-                        print("practice")
+                    
+                    
 
         # Main Menu UI
         
         title=text_format("Nutrition-Expert", font, 100, white)
-        menu=text_format("Menu", font, 85, white)
 
-        #select start in the menu
-        if selected=="start":
-            text_start=text_format("Start"+" "*20+"1", font, 75, yellow)
+        #select Select Mode in the menu
+        if selected=="Select Mode":
+            text_sm=text_format("Select Mode"+" "*7+"1", font, 75, yellow)
         else:
-            text_start = text_format("Start"+" "*20+"1", font, 75, white)
+            text_sm = text_format("Select Mode"+" "*7+"1", font, 75, white)
 
-
-        if selected=="practice":
-            text_practice=text_format("Practice"+" "*16+"2", font, 75, yellow)
+        #select Calcium in the menu
+        if selected=="Introduction":
+            text_introduction=text_format("Introduction"+" "*7+"2", font, 75, yellow)
         else:
-            text_practice = text_format("Practice"+" "*16+"2", font, 75, white)
+            text_introduction = text_format("Introduction"+" "*7+"2", font, 75, white)
 
-        #select quit in the menu
-        if selected=="back":
-            text_back=text_format("Back"+" "*21+"3", font, 75, yellow)
-        else:
-            text_back = text_format("Back"+" "*21+"3", font, 75, white)
-
+      
         
         title_rect=title.get_rect()
 
         # Main Menu Text
         screen.blit(title, (screen_width/2 - (title_rect[2]/2), 20))
-        screen.blit(text_start, (screen_width/6, 180))
-        screen.blit(text_practice, (screen_width/6, 280))
-        screen.blit(text_back, (screen_width/6, 380))
+        screen.blit(text_sm, (screen_width/6, 180))
+        screen.blit(text_introduction, (screen_width/6, 280))
         pygame.display.update()
         clock.tick(FPS)
 

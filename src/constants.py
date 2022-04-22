@@ -4,6 +4,15 @@ SCREEN_H = 700
 # The target framerate of our game. Set to 0 for no limit
 FPS = 144
 
+# colors
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+
+# player properties
+PLAYER_SPEED = 0.8
+DEFAULT_IMAGE = "assets/image/player/Idle_1.png"
+FULL_VALUE = 100
+
 FOOD_STATS = {
     "FOODS": "./food_list.json",
     "FOOD_VEL": 5,

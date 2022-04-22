@@ -17,4 +17,5 @@ PS C:\\> venv\\Scripts\\Activate.ps1 # PowerShell
 - 
 
 ## Asset credits
-- dpren ([In-game music](https://freesound.org/people/dpren/sounds/320685/), CC BY 3.0 License)
+- dpren ([In-game music](https://freesound.org/people/dpren/sounds/320685/))
+- pzuh ([Player sprite](https://pzuh.itch.io/the-boy-free-sprites))
