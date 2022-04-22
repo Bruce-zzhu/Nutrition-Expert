@@ -14,7 +14,17 @@ class Food(Entity):
     eaten: bool
 
     def __init__(self, params):
-        Entity.__init__(self, params.append(0))
+        Entity.__init__(
+            self,
+            params[F_PARAMS["X"]],
+            0,
+            params[F_PARAMS["WIDTH"]],
+            params[F_PARAMS["HEIGHT"]],
+            pygame.image.load(params[F_PARAMS["FOOD"]]["image_url"]),
+            params[F_PARAMS["WIDTH"]],
+            params[F_PARAMS["HEIGHT"]],
+        )
+
         eaten = False
         self.velocity = (0, FOOD_STATS["FOOD_VEL"])
 
