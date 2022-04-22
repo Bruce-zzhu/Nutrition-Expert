@@ -2,6 +2,7 @@ from dis import dis
 import enum
 import json
 import random
+from time import sleep
 import pygame
 from pygame import Color, Vector2
 from random import randint
@@ -15,20 +16,19 @@ food_path = FOOD_STATS["FOODS"]
 with open(food_path, "r") as f:
     FOOD_PROPS = json.loads(f.read())
 
-## placeholder stage value
-# stage = nutrients.vit_c
-stage = "vit_c"
-
 
 class Game:
     entities: list
     mode: enum
 
+    ## placeholder stage value
+    stage = "vit_c"
+
     time_passed: int
 
     def __init__(self):
         self.start_game()
-        time_passed = 0
+        self.time_passed = 0
 
     def start_game(self):
         print("Start a new game.")
@@ -129,15 +129,22 @@ class Game:
             obj.tick(delta, self.entities)
             obj.move(delta)
 
+        # generate food every 2 seconds
+        if self.time_passed == 0:
+            generate_food(self.stage)
+        self.time_passed = (self.time_passed + 1) % (FPS * 2)
+
 
 def generate_food(stage: str):
     x = randint(0, SCREEN_W)
+
     rand_fname = FOOD_PROPS["nutrients"][stage][
         randint(0, len(FOOD_PROPS["nutrients"][stage]))
     ]
     for food in FOOD_PROPS["foods"]:
         if rand_fname == food["name"]:
-            img = pygame.image.load(FOOD_PROPS["image_url"])
+            food["image_url"]
+            img = pygame.image.load(food["image_url"])
             if food["type"] == "healthy":
                 return Healthy(
                     [
@@ -169,20 +176,3 @@ def generate_food(stage: str):
                     ]
                 )
     return False
-
-
-def update(self, delta):
-    for i in range(len(self.entities) - 1, -1, -1):
-        obj = self.entities[i]
-        # delete the food that has been eaten
-        if obj.expired:
-            del self.entities[i]
-
-        # Execute entity logic
-        obj.tick(delta, self.entities)
-        obj.move(delta)
-
-    # generate food every 2 seconds
-    if self.time_passed == 0:
-        generate_food(self.stage)
-    self.time_passed = self.time_passed // (FPS * 2) + 1

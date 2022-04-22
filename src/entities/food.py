@@ -35,7 +35,7 @@ class Healthy(Food):
     nutrition: dict
 
     def __init__(self, params):
-        super(self, params)
+        super().__init__(params)
         self.score = FOOD_STATS["H_SCORE"]
         self.satiation = FOOD_STATS["SATIATION"]
         self.nutrition = defaultdict(int)
@@ -47,7 +47,7 @@ class Water(Food):
     hydration: int
 
     def __init__(self, params):
-        super(self, params)
+        super().__init__(params)
         self.hydration = FOOD_STATS["HYDRATION"]
         self.score = FOOD_STATS["W_SCORE"]
         self.satiation = 0
@@ -58,7 +58,7 @@ class Unhealthy(Food):
     nutrition: dict
 
     def __init__(self, params):
-        super(self, params)
+        super().__init__(params)
         self.score = FOOD_STATS["U_SCORE"]
         self.hydration = -FOOD_STATS["HYDRATION"]
         self.nutrition = defaultdict(int)
