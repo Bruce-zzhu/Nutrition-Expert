@@ -3,3 +3,7 @@ venv/
 
 # IDE configuration files
 .vscode
+
+# Cache
+*__pycache__*
+*.DS_Store*

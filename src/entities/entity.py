@@ -1,13 +1,5 @@
 import pygame
-from src.constants import SCREEN_W
-
-## Param order
-P_NUTRIENTS = 0
-P_FOOD = 1
-P_X = 2
-P_WIDTH = 3
-P_HEIGHT = 4
-P_Y = 5
+from src.constants import SCREEN_W, F_PARAMS
 
 
 class Entity(pygame.Rect):
@@ -16,12 +8,17 @@ class Entity(pygame.Rect):
     expired: bool  # for entity to disappear or not
 
     def __init__(self, params):
-        super().__init__(params[P_X], params[P_Y], params[P_WIDTH], params[P_HEIGHT])
-        image = pygame.image.load(params[P_FOOD]["image_url"])
+        super().__init__(
+            params[F_PARAMS["X"]],
+            params[F_PARAMS["Y"]],
+            params[F_PARAMS["WIDTH"]],
+            params[F_PARAMS["HEIGHT"]],
+        )
+        image = pygame.image.load(params[F_PARAMS["FOOD"]]["image_url"])
         self.velocity = pygame.Vector2()  # (0, 0)
         self.expired = False
         self.image = pygame.transform.smoothscale(
-            image, (params[P_WIDTH], params[P_WIDTH])
+            image, (params[F_PARAMS["WIDTH"]], params[F_PARAMS["WIDTH"]])
         )
 
     def render(self, display: pygame.Surface):
