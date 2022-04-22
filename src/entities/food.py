@@ -1,5 +1,4 @@
 from collections import defaultdict
-from play import FOOD_PROPS
 import pygame
 
 from src.entities.entity import Entity
