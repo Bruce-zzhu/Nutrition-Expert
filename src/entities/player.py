@@ -1,3 +1,4 @@
+from pygame.transform import flip
 from src.constants import FULL_VALUE, PLAYER_SPEED, IMAGE_FOLDER
 from src.entities.food import Food, Healthy, Unhealthy, Water
 from src.entities.entity import Entity
@@ -23,11 +24,11 @@ class Player(Entity):
 
     def move_left(self):
         if self.move_direction >= 0:
-            self.image = pygame.transform.flip(IMAGE_FOLDER + "Run_0.png")
+            self.image = flip(IMAGE_FOLDER + "Run_0.png", True, False)
         else:
             img_idx = self.image[-5:-4]
-            self.image = pygame.transform.flip(
-                IMAGE_FOLDER + "Run_" + str((img_idx + 1) % 4) + ".png"
+            self.image = flip(
+                IMAGE_FOLDER + "Run_" + str((img_idx + 1) % 4) + ".png", True, False
             )
         self.move_direction = -1
 

@@ -1,4 +1,3 @@
-from numpy import disp
 import pygame
 from src.constants import SCREEN_W, SCREEN_H, FPS, FOOD_STATS
 from src.game import Game
@@ -26,7 +25,6 @@ def main():
         for e in events:
             if e.type == pygame.QUIT:
                 running = False
-        
 
 
 if __name__ == "__main__":
