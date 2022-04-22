@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 import os
 
+
 # Game Initialization
 pygame.init()
 
@@ -44,7 +45,8 @@ clock = pygame.time.Clock()
 FPS=30
 
 # Main Menu
-def main_menu():
+@staticmethod
+def selectModeMenu():
 
     menu=True
     selected="Vitamin C"
@@ -128,6 +130,6 @@ def main_menu():
         pygame.display.set_caption("Nutrition-Expert")
 
 #Initialize the Game
-main_menu()
+selectModeMenu()
 pygame.quit()
 quit()

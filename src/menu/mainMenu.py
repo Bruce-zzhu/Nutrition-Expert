@@ -47,7 +47,7 @@ FPS=30
 def main_menu():
 
     menu=True
-    selected="Start Game"
+    selected="Select Mode"
 
     while menu:
         for event in pygame.event.get():
@@ -56,16 +56,17 @@ def main_menu():
                 quit()
             if event.type==pygame.KEYDOWN:
                 if event.key==pygame.K_UP:
-                    selected="Start Game"
+                    selected="Select Mode"
                 elif event.key==pygame.K_DOWN :
                     selected="Introduction"
                 
 
 
                 if event.key==pygame.K_RETURN:
-                    if selected=="Start Game":
+                    if selected=="Select Mode":
                         #select vc mode
-                        print("Start Game")
+                        print("Select Mode")
+                        
 
                     if selected=="Introduction":
                         #select fibre mode
@@ -78,11 +79,11 @@ def main_menu():
         
         title=text_format("Nutrition-Expert", font, 100, white)
 
-        #select Start Game in the menu
-        if selected=="Start Game":
-            text_sg=text_format("Start Game"+" "*8+"1", font, 75, yellow)
+        #select Select Mode in the menu
+        if selected=="Select Mode":
+            text_sm=text_format("Select Mode"+" "*7+"1", font, 75, yellow)
         else:
-            text_sg = text_format("Start Game"+" "*8+"1", font, 75, white)
+            text_sm = text_format("Select Mode"+" "*7+"1", font, 75, white)
 
         #select Calcium in the menu
         if selected=="Introduction":
@@ -96,7 +97,7 @@ def main_menu():
 
         # Main Menu Text
         screen.blit(title, (screen_width/2 - (title_rect[2]/2), 20))
-        screen.blit(text_sg, (screen_width/6, 180))
+        screen.blit(text_sm, (screen_width/6, 180))
         screen.blit(text_introduction, (screen_width/6, 280))
         pygame.display.update()
         clock.tick(FPS)
