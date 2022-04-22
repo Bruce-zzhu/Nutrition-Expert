@@ -1,6 +1,11 @@
 import pygame
 from pygame.image import load as loadImg
-from src.constants import FULL_VALUE, PLAYER_SPEED, IMAGE_FOLDER, DEFAULT_IMG
+from src.constants import (
+    FULL_VALUE,
+    PLAYER_SPEED,
+    PLAYER_IMAGE_PATH,
+    PLAYER_DEFAULT_IMG,
+)
 from src.entities.food import Food, Healthy, Unhealthy, Water
 from src.entities.entity import Entity
 
@@ -14,8 +19,8 @@ class Player(Entity):
     speed: int
 
     def __init__(self):
-        super().__init__(500, 600, 55, 55, IMAGE_FOLDER + DEFAULT_IMG)
-        self.image = loadImg(IMAGE_FOLDER + DEFAULT_IMG)
+        super().__init__(500, 600, 55, 55, PLAYER_IMAGE_PATH + PLAYER_DEFAULT_IMG)
+        self.image = loadImg(PLAYER_IMAGE_PATH + PLAYER_DEFAULT_IMG)
         self.satiation = 0
         self.hydration = FULL_VALUE
         self.scores = 0
@@ -25,30 +30,30 @@ class Player(Entity):
     def move_left(self):
         image_path: str
         if self.move_direction >= 0:
-            image_path = IMAGE_FOLDER + "Run_0.png"
+            image_path = PLAYER_IMAGE_PATH + "Run_0.png"
         else:
             img_idx = self.image[-5:-4]
-            image_path = IMAGE_FOLDER + "Run_" + str((img_idx + 1) % 4) + ".png"
+            image_path = PLAYER_IMAGE_PATH + "Run_" + str((img_idx + 1) % 4) + ".png"
         self.image = pygame.transform.flip(loadImg(image_path), True, False)
         self.move_direction = -1
 
     def move_right(self):
         image_path: str
         if self.move_direction <= 0:
-            image_path = IMAGE_FOLDER + "Run_0.png"
+            image_path = PLAYER_IMAGE_PATH + "Run_0.png"
         else:
             img_idx = self.image[-5:-4]
-            image_path = IMAGE_FOLDER + "Run_" + str((img_idx + 1) % 4) + ".png"
+            image_path = PLAYER_IMAGE_PATH + "Run_" + str((img_idx + 1) % 4) + ".png"
         self.image = loadImg(image_path)
         self.move_direction = 1
 
     def stop_moving(self):
         image_path: str
         if self.move_direction != 0:
-            image_path = IMAGE_FOLDER + "Idle_0.png"
+            image_path = PLAYER_IMAGE_PATH + "Idle_0.png"
         else:
             img_idx = self.image[-5:-4]
-            image_path = IMAGE_FOLDER + "Idle_" + str((img_idx + 1) % 4) + ".png"
+            image_path = PLAYER_IMAGE_PATH + "Idle_" + str((img_idx + 1) % 4) + ".png"
         self.image = loadImg(image_path)
         self.move_direction = 0
 
@@ -67,7 +72,7 @@ class Player(Entity):
         if isinstance(food, Water) or isinstance(food, Unhealthy):
             hydration += food.hydration
         if isinstance(food, Unhealthy):
-            self.image = IMAGE_FOLDER + "Dead.png"
+            self.image = PLAYER_IMAGE_PATH + "Dead.png"
 
     def tick(self, delta: int, objects: "list"):
         self.velocity.x = self.speed * self.move_direction
