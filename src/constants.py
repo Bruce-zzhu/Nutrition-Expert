@@ -33,12 +33,13 @@ FOOD_STATS = {
     "SHRINKAGE": 4,
     "MAX_SIZE": 50,
     "FONT": "assets/font/Montserrat-Regular.ttf",
-    "FONT_SIZE": 24,
+    "FONT_SIZE": 20,
+    "UNITS": {"Vit C": "mg", "Calcium": "mg", "Fibre": "g"},
 }
 
 
 # nutrients
-VIT_C = "Vitamin_C"
+VIT_C = "Vit C"
 CALCIUM = "Calcium"
 FIBRE = "Fibre"
 

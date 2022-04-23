@@ -41,38 +41,58 @@ class Food(Entity):
     def render(self, display: pygame.Surface, practice: bool):
         Entity.render(self, display)
         if practice:
+            scoreColor: tuple
             scoreFont = pygame.font.SysFont(
                 ["helvetica", "arial"], FOOD_STATS["FONT_SIZE"], bold=True
             )
 
             if isinstance(self, Healthy) or isinstance(self, Unhealthy):
-                scoreOutline = scoreFont.render(
-                    str(self.nutrition[self.stage] + (self.score)), 0, WHITE
-                )
+                scoreVal = f"{self.nutrition[self.stage] + self.score}"
                 if isinstance(self, Healthy):
-
-                    scoreText = scoreFont.render(
-                        str(self.nutrition[self.stage] + (self.score)), 0, GREEN
-                    )
+                    scoreNutr = self.stage
+                    scoreVal += FOOD_STATS["UNITS"][self.stage]
+                    scoreColor = GREEN
                 else:
-                    scoreText = scoreFont.render(
-                        str(self.nutrition[self.stage] + (self.score)), 0, RED
-                    )
+                    scoreColor = RED
             else:
-                scoreOutline = scoreFont.render("0", 0, WHITE)
-                scoreText = scoreFont.render("0", 0, BLUE)
+                scoreVal = "0"
+                scoreColor = BLUE
 
-            scoreRect = scoreText.get_rect(
-                center=(
-                    self.x + self.width / 2,
-                    self.y + self.height / 2,
+            if isinstance(self, Healthy):
+                # print scoreNutr
+                self.printWithOutline(
+                    display,
+                    scoreColor,
+                    scoreFont,
+                    scoreNutr,
+                    (self.x + self.width / 2, self.y - self.height),
                 )
+
+            # print scoreVal
+            self.printWithOutline(
+                display,
+                scoreColor,
+                scoreFont,
+                scoreVal,
+                (self.x + self.width / 2, self.y - self.height / 2),
             )
-            display.blit(scoreOutline, (scoreRect.x - 2, scoreRect.y - 2))
-            display.blit(scoreOutline, (scoreRect.x - 2, scoreRect.y + 2))
-            display.blit(scoreOutline, (scoreRect.x + 2, scoreRect.y - 2))
-            display.blit(scoreOutline, (scoreRect.x + 2, scoreRect.y + 2))
-            display.blit(scoreText, (scoreRect.x, scoreRect.y))
+
+    def printWithOutline(
+        self,
+        display: pygame.Surface,
+        printColor: tuple,
+        printFont: pygame.font.Font,
+        printText: str,
+        printCenter: tuple,
+    ):
+        outline = printFont.render(printText, 0, WHITE)
+        fill = printFont.render(printText, 0, printColor)
+        printRect = fill.get_rect(center=printCenter)
+        display.blit(outline, (printRect.x - 2, printRect.y - 2))
+        display.blit(outline, (printRect.x - 2, printRect.y + 2))
+        display.blit(outline, (printRect.x + 2, printRect.y - 2))
+        display.blit(outline, (printRect.x + 2, printRect.y + 2))
+        display.blit(fill, (printRect.x, printRect.y))
 
 
 class Healthy(Food):
