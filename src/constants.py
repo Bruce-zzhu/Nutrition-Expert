@@ -7,6 +7,9 @@ FPS = 144
 # colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+BLUE = (0, 0, 255)
+RED = (171, 36, 36)
+GREEN = (15, 107, 33)
 YELLOW = (255, 255, 0)
 
 # player properties
@@ -30,7 +33,7 @@ FOOD_STATS = {
     "SHRINKAGE": 4,
     "MAX_SIZE": 50,
     "FONT": "assets/font/Montserrat-Regular.ttf",
-    "FONT_SIZE": 20,
+    "FONT_SIZE": 24,
 }
 
 

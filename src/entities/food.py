@@ -1,4 +1,6 @@
+from asyncio import Handle
 from collections import defaultdict
+from gettext import install
 import pygame
 
 # from enum import Enum
@@ -40,20 +42,39 @@ class Food(Entity):
 
     def render(self, display: pygame.Surface, practice: bool):
         Entity.render(self, display)
-        if practice and not isinstance(self, Water):
-            scoreFont = pygame.font.Font(
-                FOOD_STATS["FONT"], FOOD_STATS["FONT_SIZE"], bold=pygame.font.Font.bold
+        if not practice:
+            scoreFont = pygame.font.SysFont(
+                ["helvetica", "arial"], FOOD_STATS["FONT_SIZE"], bold=True
             )
-            scoreText = scoreFont.render(
-                str(self.nutrition[self.stage] + (self.score)), 0, BLACK
-            )
+
+            if isinstance(self, Healthy) or isinstance(self, Unhealthy):
+                scoreOutline = scoreFont.render(
+                    str(self.nutrition[self.stage] + (self.score)), 0, WHITE
+                )
+                if isinstance(self, Healthy):
+
+                    scoreText = scoreFont.render(
+                        str(self.nutrition[self.stage] + (self.score)), 0, GREEN
+                    )
+                else:
+                    scoreText = scoreFont.render(
+                        str(self.nutrition[self.stage] + (self.score)), 0, RED
+                    )
+            else:
+                scoreOutline = scoreFont.render("0", 0, WHITE)
+                scoreText = scoreFont.render("0", 0, BLACK)
+
             scoreRect = scoreText.get_rect(
                 center=(
                     self.x + self.width / 2,
                     self.y + self.height / 2,
                 )
             )
-            display.blit(scoreText, scoreRect)
+            display.blit(scoreOutline, (scoreRect.x - 2, scoreRect.y - 2))
+            display.blit(scoreOutline, (scoreRect.x - 2, scoreRect.y + 2))
+            display.blit(scoreOutline, (scoreRect.x + 2, scoreRect.y - 2))
+            display.blit(scoreOutline, (scoreRect.x + 2, scoreRect.y + 2))
+            display.blit(scoreText, (scoreRect.x, scoreRect.y))
 
 
 class Healthy(Food):
