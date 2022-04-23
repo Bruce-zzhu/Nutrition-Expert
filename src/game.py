@@ -18,6 +18,7 @@ class Game:
     entities: list
     mode: str
     time_passed: int
+    isPractice: bool
 
     def __init__(self):
         self.start_game()

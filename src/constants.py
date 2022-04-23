@@ -7,6 +7,9 @@ FPS = 144
 # colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+BLUE = (0, 0, 255)
+RED = (171, 36, 36)
+GREEN = (15, 107, 33)
 YELLOW = (255, 255, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
@@ -22,7 +25,7 @@ FULL_VALUE = 100
 FOOD_IMAGE_PATH = "assets/image/foods/"
 FOOD_STATS = {
     "FOODS": "./food_list.json",
-    "FOOD_VEL": 0.5,
+    "FOOD_VEL": 0.25,
     "FOOD_FREQ": 0.5,
     "H_SCORE": 10,
     "W_SCORE": 0,
@@ -32,8 +35,9 @@ FOOD_STATS = {
     "U_FIBRE": 2,
     "SHRINKAGE": 4,
     "MAX_SIZE": 50,
+    "FONT": "assets/font/Montserrat-Regular.ttf",
+    "FONT_SIZE": 24,
 }
-
 
 
 # nutrients
