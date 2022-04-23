@@ -16,7 +16,7 @@ class Menu():
     def tick(self, clock, FPS):
         clock.tick(FPS)
 
-    def blit_text(display, text, pos, font, color=pygame.Color('white')):
+    def blit_text(display, text, pos, font, color=pygame.Color('WHITE')):
         words = [word.split(' ') for word in text.splitlines()]  # 2D array where each row is a list of words.
         space = font.size(' ')[0]  # The width of a space.
         max_width, max_height = SCREEN_W, SCREEN_H
@@ -335,3 +335,90 @@ class Menu():
         display.blit(text_back, (SCREEN_W/2 - (title_rect[2]/2), 350))
         pygame.display.update()
         pygame.display.set_caption("Nutrition-Expert")
+
+    def leaderboard_handle_input(self, events):
+        game_status = BOARD
+        for event in events:
+            if event.type==pygame.QUIT:
+                pygame.quit()
+                quit()
+            if event.type==pygame.KEYDOWN:
+                if event.key==pygame.K_RETURN:
+                    game_status = MAIN_MENU
+                    self.menu_state = VIT_C
+
+        return game_status
+
+    def rednder_leaderboard(self, display, font):
+        bg_img = self.render_background()
+        display.blit(bg_img, (0, 0))
+
+        ### SET LEADERBOARD DATA ###
+        
+        username = {
+            1: "top1 nameeeeee",
+            2: "bruce",
+            3: "22"
+        }
+        score = {
+            1: "12",
+            2: "123",
+            3: "111"
+        } 
+        
+        time = {
+            "score":"123",
+            "username": "bruce"
+        }
+
+        font_size = 40
+        line_margin = 50
+
+        # Set display title
+        title = self.render_text("Leaderboard", font, 100, WHITE)
+        title_rect = title.get_rect()
+        title_pos_horizontal = SCREEN_W/2 - (title_rect[2]/2)
+        title_position = (title_pos_horizontal, 20)
+
+        selectable_back = self.render_text("Press Enter Back To Main Menu", font, font_size, YELLOW)
+        selectable_back_pos = (title_pos_horizontal, 485)
+
+        name = self.render_text("Your record: "+ time['username']+" ( "+time['score']+" )", font, font_size, YELLOW)
+        name_pos = (title_pos_horizontal, 125)
+        
+        history = self.render_text("TOP 3", font, 65, WHITE)
+        history_pos = (title_pos_horizontal, 205)
+
+        # Screen blit for leaderboard username and score display
+        def get_position_for_username_line(line_number):
+            base = 240
+            return (title_pos_horizontal, base + line_margin * line_number)
+
+        def get_position_for_score_line(line_number):
+            base = 240
+            return (title_rect.right+170, base + line_margin * line_number)
+
+        # Set display blits
+        display.blit(name, name_pos)
+        display.blit(selectable_back, selectable_back_pos)
+        
+        display.blit(history, history_pos)
+        display.blit(title, title_position)
+        
+
+        
+        for i in range(1, len(username) + 1):
+            # Make Surfaces and update username and score dictionaries
+            if username[i] != time['username']:
+                username[i] = self.render_text(username[i], font, 35, WHITE)
+                score[i] = self.render_text(score[i], font, 35, WHITE)
+            else:
+                
+                username[i] = self.render_text(username[i], font, 45, YELLOW)
+                score[i] = self.render_text(score[i], font, 45, YELLOW)
+                
+            
+
+            # Set display blits for usernames and scores
+            display.blit(username[i], get_position_for_username_line(i))
+            display.blit(score[i], get_position_for_score_line(i))

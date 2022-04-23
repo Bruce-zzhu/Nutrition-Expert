@@ -133,8 +133,10 @@ class Game:
             self.render_text(
                 display, font, f"Hydration level: {self.player.hydration}", WHITE, (50, 50)
             )
+
+            return GAME
         else:
-            pass
+            return BOARD
 
         
 
