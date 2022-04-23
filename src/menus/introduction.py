@@ -52,13 +52,20 @@ yellow = (255, 255, 0)
 
 # Game Fonts
 font = "assets/font/Montserrat-Regular.ttf"
-font_text = pygame.font.SysFont("Arial", 29)
+font_text = pygame.font.SysFont("Arial", 26)
 
 # Main Menu image
 picture = pygame.image.load("assets/image/foods/background.png")
 picture = pygame.transform.scale(picture, (screen_width, screen_height))
-screen.blit(picture, (0, 0))
 
+
+picture2 = pygame.image.load("assets/image/intro_background3.jpg")
+picture2 = pygame.transform.scale(
+    picture2, (screen_width * 9 / 10, screen_height * 12 / 20)
+)
+
+screen.blit(picture, (0, 0))
+screen.blit(picture2, (45, 120))
 
 # Game Framerate
 clock = pygame.time.Clock()
@@ -81,10 +88,10 @@ def introduction():
         title = text_format("Introduction", font, 90, white)
         menu = text_format("Menu", font, 85, white)
 
-        text_intro = " Nutrition Expert is designed to provide users the knowledge about food and nutrition.\n\n Game rules:\n 1. Select a specific nutrient that you are interested in\n 2. Move the character to eat the food that contains the chosen nutrient\n 3. The scores depend on how much the chosen nutrient the food contains \n 4. Each food (except for water) will increase character's satiation level\n 5. User's hydration level decreases by time. Drinking water increases the hydration level\n 6. Game ends when either user's satiation level is full or hydration level is 0\n 7. There is a leaderboard recording the top 5 users for each nutrient"
+        text_intro = " Nutrition Expert is designed to provide users the knowledge about food and nutrition.\n Game rules:\n 1. Select a specific nutrient that you are interested in\n 2. Move the character to eat the food that contains the chosen nutrient\n 3. The scores depend on how much the chosen nutrient the food contains \n 4. Each food (except for water) will increase character's satiation level\n 5. User's hydration level decreases by time. Drinking water increases the hydration level\n 6. Game ends when either user's satiation level is full or hydration level is 0\n 7. There is a leaderboard recording the top 5 users for each nutrient"
 
         # select back in the menu
-        text_back = text_format("Press Enter Back To Main Menu ", font, 40, yellow)
+        text_back = text_format("Press Enter Back To Main Menu ", font, 45, yellow)
         title_rect = title.get_rect()
 
         # Main Menu Text
