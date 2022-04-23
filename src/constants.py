@@ -29,8 +29,9 @@ FOOD_STATS = {
     "U_FIBRE": 2,
     "SHRINKAGE": 4,
     "MAX_SIZE": 50,
+    "FONT": "assets/font/HyFWoolBall-2.ttf",
+    "FONT_SIZE": 8,
 }
-
 
 
 # nutrients

@@ -5,13 +5,14 @@ import pygame
 
 from src.entities.entity import Entity
 
-from src.constants import SCREEN_H, FOOD_STATS, F_PARAMS
+from src.constants import *
 
 # nutrients = Enum("nutrients", "vit_c calc fibre")
 class Food(Entity):
     satiation: int
     score: int
     eaten: bool
+    stage: str
 
     def __init__(self, params):
         super().__init__(
@@ -28,10 +29,21 @@ class Food(Entity):
         self.image = pygame.transform.scale(
             self.image, (FOOD_STATS["MAX_SIZE"], FOOD_STATS["MAX_SIZE"])
         )
+        self.stage = params[F_PARAMS["STAGE"]]
 
     def tick(self, delta: int, objects: "list"):
         if self.eaten or self.y < 0 or self.y > SCREEN_H:
             self.kill()
+
+    def render(self, practice: bool, display: pygame.Surface):
+        super.render()
+        if practice and isinstance(self, Healthy):
+            scoreFont = pygame.font.Font(FOOD_STATS["FONT"], FOOD_STATS["FONT_SIZE"])
+            scoreText = scoreFont.render(
+                self.nutrition[self.stage] + self.score, 0, BLACK
+            )
+            scoreRect = scoreText.get_rect(center=(self.x, self.y))
+            display.blit(scoreText, scoreRect)
 
 
 class Healthy(Food):
@@ -42,10 +54,7 @@ class Healthy(Food):
         self.score = FOOD_STATS["H_SCORE"]
         self.satiation = FOOD_STATS["SATIATION"]
         self.nutrition = defaultdict(int)
-
-        self.nutrition[params[F_PARAMS["STAGE"]]] = params[F_PARAMS["FOOD"]][
-            params[F_PARAMS["STAGE"]]
-        ]
+        self.nutrition[self.stage] = params[F_PARAMS["FOOD"]][self.stage]
 
 
 class Water(Food):
