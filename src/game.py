@@ -171,12 +171,12 @@ class Game:
             with open("leaderboard.json", "r") as f:
                 board = json.loads(f.read())
 
-            board['time']['score'] = str(scores)
+            board["time"]["score"] = str(scores)
 
-            
-
-            with open('leaderboard.json', 'w') as f:
+            with open("leaderboard.json", "w") as f:
                 json.dump(board, f)
+
+            self.player.reset()
 
             return BOARD
 

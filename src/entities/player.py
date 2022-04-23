@@ -36,6 +36,20 @@ class Player(Entity):
         self.ticks = 0
         self.unhealthy_tick = 0
 
+    def reset(self):
+        self.expired = False
+
+        self.full_image_path = PLAYER_IMAGE_PATH + PLAYER_DEFAULT_IMG
+        self.image = self.loadImg()
+        self.satiation = 0
+        self.hydration = FULL_VALUE
+        self.scores = 0
+        self.speed = PLAYER_SPEED
+        self.move_direction = 0  # -1 for left; 0 for stop; 1 for right
+        self.prev_direction = 0
+        self.ticks = 0
+        self.unhealthy_tick = 0
+
     def move_left(self):
         self.move_direction = -1
 
