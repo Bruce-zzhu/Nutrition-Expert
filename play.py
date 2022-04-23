@@ -1,10 +1,9 @@
 from dis import dis
 from tkinter.tix import MAIN
 import pygame
-from src.constants import SCREEN_W, SCREEN_H, FPS, GAME
 from src.game import Game
 from src.menu import Menu
-from src.constants import GAME, MENU, MAIN_MENU, SELECT_MENU, START_READY, INTRO_MENU
+from src.constants import *
 from src.entities.food import *
 
 stage: str
@@ -37,12 +36,17 @@ def main():
         elif status == SELECT_MENU:
             status = menu.select_menu_handle_input(events)
             menu.render_select_menu(display, font_str)
-        elif status == START_READY:
-            status = menu.ready_menu_handle_input(events)
-            menu.render_ready_menu(display, font_str)
         elif status == INTRO_MENU:
             status = menu.intro_menu_handle_input(events)
             menu.render_intro_menu(display, font_str)
+        elif status == START_READY:
+            status = menu.ready_menu_handle_input(events)
+            menu.render_ready_menu(display, font_str)
+        elif status == INPUT_MENU:
+            status = menu.input_menu_handle_input(events)
+            menu.render_input_menu(display, font_str)
+        elif status == BOARD:
+            pass
             
 
         pygame.display.update()
