@@ -119,8 +119,10 @@ class Game:
 
         if not self.player.expired:
             for obj in self.entities:
-                # if isinstance(obj, Player) or isinstance(obj, Food):
-                obj.render(display)
+                if isinstance(obj, Food):
+                    obj.render(display, self.isPractice)
+                else:
+                    obj.render(display)
 
             self.render_text(
                 display, font, "Nutrition Expert", WHITE, (SCREEN_W // 2 - 70, 25)
