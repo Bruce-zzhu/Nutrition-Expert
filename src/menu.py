@@ -59,9 +59,9 @@ class Menu:
 
         # select Select Mode in the menu
         if self.menu_state == SELECT_MENU:
-            text_sm = self.render_text(SELECT_MENU + " " * 7 + "1", font, 75, YELLOW)
+            text_sm = self.render_text(SELECT_MENU + " " * 8 + "1", font, 75, YELLOW)
         else:
-            text_sm = self.render_text(SELECT_MENU + " " * 7 + "1", font, 75, WHITE)
+            text_sm = self.render_text(SELECT_MENU + " " * 8 + "1", font, 75, WHITE)
 
         # select Calcium in the menu
         if self.menu_state == INTRO_MENU:
@@ -167,9 +167,9 @@ class Menu:
 
         # select Vitamin C in the menu
         if self.menu_state == VIT_C:
-            text_vc = self.render_text(VIT_C + " " * 10 + "1", font, 75, YELLOW)
+            text_vc = self.render_text(VIT_C + " " * 16 + "1", font, 75, YELLOW)
         else:
-            text_vc = self.render_text(VIT_C + " " * 10 + "1", font, 75, WHITE)
+            text_vc = self.render_text(VIT_C + " " * 16 + "1", font, 75, WHITE)
 
         # select Calcium in the menu
         if self.menu_state == CALCIUM:
