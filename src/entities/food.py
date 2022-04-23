@@ -27,7 +27,8 @@ class Food(Entity):
         self.velocity.x = 0
         self.velocity.y = FOOD_STATS["FOOD_VEL"]
         self.image = pygame.transform.scale(
-            self.image, (FOOD_STATS["MAX_SIZE"], FOOD_STATS["MAX_SIZE"])
+            self.image,
+            (FOOD_STATS["MAX_SIZE"] * self.width / self.height, FOOD_STATS["MAX_SIZE"]),
         )
         self.stage = params[F_PARAMS["STAGE"]]
 
@@ -35,14 +36,21 @@ class Food(Entity):
         if self.eaten or self.y < 0 or self.y > SCREEN_H:
             self.kill()
 
-    def render(self, practice: bool, display: pygame.Surface):
-        super.render()
-        if practice and isinstance(self, Healthy):
-            scoreFont = pygame.font.Font(FOOD_STATS["FONT"], FOOD_STATS["FONT_SIZE"])
-            scoreText = scoreFont.render(
-                self.nutrition[self.stage] + self.score, 0, BLACK
+    def render(self, display: pygame.Surface, practice: bool):
+        Entity.render(self, display)
+        if practice and not isinstance(self, Water):
+            scoreFont = pygame.font.Font(
+                FOOD_STATS["FONT"], FOOD_STATS["FONT_SIZE"], bold=pygame.font.Font.bold
             )
-            scoreRect = scoreText.get_rect(center=(self.x, self.y))
+            scoreText = scoreFont.render(
+                str(self.nutrition[self.stage] + (self.score)), 0, BLACK
+            )
+            scoreRect = scoreText.get_rect(
+                center=(
+                    self.x + FOOD_STATS["MAX_SIZE"] * self.width / self.height / 2,
+                    self.y + FOOD_STATS["MAX_SIZE"] / 2,
+                )
+            )
             display.blit(scoreText, scoreRect)
 
 
@@ -78,4 +86,3 @@ class Unhealthy(Food):
         self.nutrition = defaultdict(int)
         self.nutrition["fibre"] = FOOD_STATS["U_FIBRE"]
         self.satiation = FOOD_STATS["SATIATION"]
-        print(type(self.image))
