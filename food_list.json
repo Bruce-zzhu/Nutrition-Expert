@@ -43,7 +43,7 @@
         {
             "name": "broccoli",
             "type": "healthy",
-            "image_url": "./assets/image/foods/broccoli.svg",
+            "image_url": "./assets/image/foods/broccoli.png",
             "Vit C": 89,
             "Calcium": 75
         },
