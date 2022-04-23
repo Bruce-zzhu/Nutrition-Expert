@@ -49,7 +49,7 @@ yellow=(255, 255, 0)
 
 # Game Fonts
 font = "assets/font/Montserrat-Regular.ttf"
-font_text = pygame.font.SysFont('Arial', 20)
+font_text = pygame.font.SysFont('Arial', 24)
 
 # Main Menu image
 picture = pygame.image.load("assets/image/foods/background.png")
