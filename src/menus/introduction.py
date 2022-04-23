@@ -93,4 +93,5 @@ def introduction():
         pygame.display.set_caption("Nutrition-Expert")
 
 #Initialize the Game
-introduction()
+if __name__ == '__main__':
+    introduction()

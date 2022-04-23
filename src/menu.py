@@ -4,6 +4,7 @@ from pygame.locals import *
 import os
 from src.constants import *
 from src.menus.inputNameMenu import InputBox, FONT
+from src.menus.introduction import blit_text
 
 
 class Menu():
@@ -16,22 +17,7 @@ class Menu():
     def tick(self, clock, FPS):
         clock.tick(FPS)
 
-    def blit_text(display, text, pos, font, color=pygame.Color('WHITE')):
-        words = [word.split(' ') for word in text.splitlines()]  # 2D array where each row is a list of words.
-        space = font.size(' ')[0]  # The width of a space.
-        max_width, max_height = SCREEN_W, SCREEN_H
-        x, y = pos
-        for line in words:
-            for word in line:
-                word_surface = font.render(word, 0, color)
-                word_width, word_height = word_surface.get_size()
-                if x + word_width >= max_width:
-                    x = pos[0]  # Reset the x.
-                    y += word_height  # Start on new row.
-                display.blit(word_surface, (x, y))
-                x += word_width + space
-            x = pos[0]  # Reset the x.
-            y += word_height  # Start on new row.
+    
 
     # Text Renderer
     def render_text(self, message, textFont, textSize, textColor):
@@ -119,24 +105,17 @@ class Menu():
         title = self.render_text("Introduction", font, 90, WHITE)
         menu = self.render_text("Menu", font, 85, WHITE)
 
-        text_intro = "Nutrition Expert is designed to provide users the knowledge about food and nutrition.\nRules:\n\
-                        1. Select a specific nutrient that you are interested in\n\
-                        2. Move the character to eat the food that contains the chosen nutrient\n\
-                        3. The scores depend on how much the chosen nutrient the food contains \n\
-                        4. Each food (except for water) will increase character's satiation level\n\
-                        5. User's hydration level decreases by time. Drinking water increases the hydration level\n\
-                        6. Game ends when either user's satiation level is full or hydration level is 0\n\
-                        7. There is a leaderboard recording the top 5 users for each nutrient"
+        text_intro = " Nutrition Expert is designed to provide users the knowledge about food and nutrition.\n\n Game rules:\n 1. Select a specific nutrient that you are interested in\n 2. Move the character to eat the food that contains the chosen nutrient\n 3. The scores depend on how much the chosen nutrient the food contains \n 4. Each food (except for water) will increase character's satiation level\n 5. User's hydration level decreases by time. Drinking water increases the hydration level\n 6. Game ends when either user's satiation level is full or hydration level is 0\n 7. There is a leaderboard recording the top 5 users for each nutrient"
+
 
         # select back in the menu
-        text_back = self.render_text(BACK, font, 75, YELLOW)
+        text_back = self.render_text("Press Enter Back To Main Menu ", font, 40, YELLOW)
         title_rect = title.get_rect()
-        text_intro_surface = self.render_text(text_intro, font, 0, WHITE)
 
         # Main Menu Text
         display.blit(title, (SCREEN_W/2 - (title_rect[2]/2), 20))
-        display.blit(text_back, (SCREEN_W/6, 450))
-        self.blit_text(display, text_intro, (SCREEN_W/8, 220), pygame.font.SysFont('Arial', 24))
+        display.blit(text_back, (SCREEN_W/10, 510))
+        blit_text(text_intro, (SCREEN_W/11, 150), pygame.font.SysFont('Arial', 29))
         pygame.display.update()
         pygame.display.set_caption("Nutrition-Expert")
 
