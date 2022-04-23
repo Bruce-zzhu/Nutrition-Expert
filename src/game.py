@@ -140,17 +140,25 @@ class Game:
             self.format_text(
                 display,
                 font_str,
+                f"Score: {self.player.scores}",
+                SCORE_FONT_SIZE,
+                WHITE,
+                (50, 50),
+            )
+            self.format_text(
+                display,
+                font_str,
                 f"Satisation level: {self.player.satiation}",
-                50,
-                RED,
+                SCORE_FONT_SIZE,
+                YELLOW,
                 (50, 100),
             )
             self.format_text(
                 display,
                 font_str,
                 f"Hydration level: {self.player.hydration}",
-                50,
-                RED,
+                SCORE_FONT_SIZE,
+                CYAN,
                 (50, 150),
             )
 
@@ -164,7 +172,7 @@ class Game:
             with open("leaderboard.json", "r") as f:
                 board = json.loads(f.read())
 
-            board['time']['score'] = str(scores)
+            board["time"]["score"] = str(scores)
 
             username = board['time']['username']
             scores = board['time']['score']
@@ -185,6 +193,8 @@ class Game:
             with open('leaderboard.json', 'w') as f:
                 json.dump(board, f)
 
+            self.player.reset()
+
             return BOARD
 
     def update(self, delta):
@@ -201,5 +211,8 @@ class Game:
         # generate food every FOOD_FREQ seconds
         if self.time_passed == 0:
             self.generate_food()
-        self.time_passed = (self.time_passed + 1) % (FPS *
-                                                     FOOD_STATS["FOOD_FREQ"])
+        self.time_passed = (self.time_passed + 1) % (FPS * FOOD_STATS["FOOD_FREQ"])
+
+        # decrease player hydration over time
+        if not self.time_passed % (FPS * 2):
+            self.player.hydration -= HYDRATION_DECREASE
