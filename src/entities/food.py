@@ -104,6 +104,7 @@ class Healthy(Food):
         self.satiation = FOOD_STATS["SATIATION"]
         self.nutrition = defaultdict(int)
         self.nutrition[self.stage] = params[F_PARAMS["FOOD"]][self.stage]
+        self.score += self.nutrition[self.stage]
 
 
 class Water(Food):
@@ -127,3 +128,4 @@ class Unhealthy(Food):
         self.nutrition = defaultdict(int)
         self.nutrition["fibre"] = FOOD_STATS["U_FIBRE"]
         self.satiation = FOOD_STATS["SATIATION"]
+        self.score += self.nutrition[self.stage]
