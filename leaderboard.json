@@ -1,0 +1,17 @@
+{
+    "username" : {
+        "1": "top1 nameeeeee",
+        "2": "bruce",
+        "3": "22"
+    },
+    "score" : {
+        "1": "12",
+        "2": "123",
+        "3": "111"
+    } ,
+    
+    "time" : {
+        "score":"123",
+        "username": "bruce"
+    }
+}

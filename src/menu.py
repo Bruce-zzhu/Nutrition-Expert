@@ -1,7 +1,6 @@
-from lib2to3.pgen2.token import STAR
 import pygame
 from pygame.locals import *
-import os
+import json
 from src.constants import *
 from src.menus.inputNameMenu import InputBox, FONT
 from src.menus.introduction import blit_text
@@ -332,23 +331,17 @@ class Menu():
         bg_img = self.render_background()
         display.blit(bg_img, (0, 0))
 
-        ### SET LEADERBOARD DATA ###
+        path = "leaderboard.json"
+        with open(path, "r") as f:
+            board = json.loads(f.read())
         
-        username = {
-            1: "top1 nameeeeee",
-            2: "bruce",
-            3: "22"
-        }
-        score = {
-            1: "12",
-            2: "123",
-            3: "111"
-        } 
         
-        time = {
-            "score":"123",
-            "username": "bruce"
-        }
+        
+        
+        username = board['username']
+        score = board['score']
+        
+        time = board['time']
 
         font_size = 40
         line_margin = 50
@@ -388,16 +381,16 @@ class Menu():
         
         for i in range(1, len(username) + 1):
             # Make Surfaces and update username and score dictionaries
-            if username[i] != time['username']:
-                username[i] = self.render_text(username[i], font, 35, WHITE)
-                score[i] = self.render_text(score[i], font, 35, WHITE)
+            if username[f"{i}"] != time['username']:
+                username[f"{i}"] = self.render_text(username[f"{i}"], font, 35, WHITE)
+                score[f"{i}"] = self.render_text(score[f"{i}"], font, 35, WHITE)
             else:
                 
-                username[i] = self.render_text(username[i], font, 45, YELLOW)
-                score[i] = self.render_text(score[i], font, 45, YELLOW)
+                username[f"{i}"] = self.render_text(username[f"{i}"], font, 45, YELLOW)
+                score[f"{i}"] = self.render_text(score[f"{i}"], font, 45, YELLOW)
                 
             
 
             # Set display blits for usernames and scores
-            display.blit(username[i], get_position_for_username_line(i))
-            display.blit(score[i], get_position_for_score_line(i))
+            display.blit(username[f"{i}"], get_position_for_username_line(i))
+            display.blit(score[f"{i}"], get_position_for_score_line(i))
