@@ -1,24 +1,24 @@
-from lib2to3.pgen2.token import STAR
 import pygame
 from pygame.locals import *
-import os
 from src.constants import *
 from src.menus.inputNameMenu import InputBox, FONT
 
 
-class Menu():
+class Menu:
     def __init__(self):
         self.menu_state = SELECT_MENU
         self.game_stage = VIT_C
         self.input_box1 = InputBox(80, 150, 340, 60)
         self.input_boxes = [self.input_box1]
-    
+
     def tick(self, clock, FPS):
         clock.tick(FPS)
 
-    def blit_text(display, text, pos, font, color=pygame.Color('white')):
-        words = [word.split(' ') for word in text.splitlines()]  # 2D array where each row is a list of words.
-        space = font.size(' ')[0]  # The width of a space.
+    def blit_text(display, text, pos, font, color=pygame.Color("white")):
+        words = [
+            word.split(" ") for word in text.splitlines()
+        ]  # 2D array where each row is a list of words.
+        space = font.size(" ")[0]  # The width of a space.
         max_width, max_height = SCREEN_W, SCREEN_H
         x, y = pos
         for line in words:
@@ -76,24 +76,26 @@ class Menu():
 
         # select Select Mode in the menu
         if self.menu_state == SELECT_MENU:
-            text_sm = self.render_text(SELECT_MENU+" "*7+"1", font, 75, YELLOW)
+            text_sm = self.render_text(SELECT_MENU + " " * 7 + "1", font, 75, YELLOW)
         else:
-            text_sm = self.render_text(SELECT_MENU+" "*7+"1", font, 75, WHITE)
+            text_sm = self.render_text(SELECT_MENU + " " * 7 + "1", font, 75, WHITE)
 
         # select Calcium in the menu
         if self.menu_state == INTRO_MENU:
             text_introduction = self.render_text(
-                INTRO_MENU+" "*7+"2", font, 75, YELLOW)
+                INTRO_MENU + " " * 7 + "2", font, 75, YELLOW
+            )
         else:
             text_introduction = self.render_text(
-                INTRO_MENU+" "*7+"2", font, 75, WHITE)
+                INTRO_MENU + " " * 7 + "2", font, 75, WHITE
+            )
 
         title_rect = title.get_rect()
 
         # Main Menu Text
-        display.blit(title, (SCREEN_W/2 - (title_rect[2]/2), 20))
-        display.blit(text_sm, (SCREEN_W/6, 180))
-        display.blit(text_introduction, (SCREEN_W/6, 280))
+        display.blit(title, (SCREEN_W / 2 - (title_rect[2] / 2), 20))
+        display.blit(text_sm, (SCREEN_W / 6, 180))
+        display.blit(text_introduction, (SCREEN_W / 6, 280))
         pygame.display.update()
 
         pygame.display.set_caption("Nutrition-Expert")
@@ -134,9 +136,11 @@ class Menu():
         text_intro_surface = self.render_text(text_intro, font, 0, WHITE)
 
         # Main Menu Text
-        display.blit(title, (SCREEN_W/2 - (title_rect[2]/2), 20))
-        display.blit(text_back, (SCREEN_W/6, 450))
-        self.blit_text(display, text_intro, (SCREEN_W/8, 220), pygame.font.SysFont('Arial', 24))
+        display.blit(title, (SCREEN_W / 2 - (title_rect[2] / 2), 20))
+        display.blit(text_back, (SCREEN_W / 6, 450))
+        self.blit_text(
+            display, text_intro, (SCREEN_W / 8, 220), pygame.font.SysFont("Arial", 24)
+        )
         pygame.display.update()
         pygame.display.set_caption("Nutrition-Expert")
 
@@ -147,13 +151,21 @@ class Menu():
                 pygame.quit()
                 quit()
             if event.type == pygame.KEYDOWN:
-                if (event.key == pygame.K_UP and self.menu_state == CALCIUM) or (event.key == pygame.K_UP and self.menu_state == VIT_C):
+                if (event.key == pygame.K_UP and self.menu_state == CALCIUM) or (
+                    event.key == pygame.K_UP and self.menu_state == VIT_C
+                ):
                     self.menu_state = VIT_C
-                elif (event.key == pygame.K_UP and self.menu_state == FIBRE) or (event.key == pygame.K_DOWN and self.menu_state == VIT_C):
+                elif (event.key == pygame.K_UP and self.menu_state == FIBRE) or (
+                    event.key == pygame.K_DOWN and self.menu_state == VIT_C
+                ):
                     self.menu_state = CALCIUM
-                elif (event.key == pygame.K_UP and self.menu_state == BACK) or (event.key == pygame.K_DOWN and self.menu_state == CALCIUM):
+                elif (event.key == pygame.K_UP and self.menu_state == BACK) or (
+                    event.key == pygame.K_DOWN and self.menu_state == CALCIUM
+                ):
                     self.menu_state = FIBRE
-                elif (event.key == pygame.K_DOWN and self.menu_state == BACK) or (event.key == pygame.K_DOWN and self.menu_state == FIBRE):
+                elif (event.key == pygame.K_DOWN and self.menu_state == BACK) or (
+                    event.key == pygame.K_DOWN and self.menu_state == FIBRE
+                ):
                     self.menu_state = BACK
 
                 if event.key == pygame.K_RETURN:
@@ -176,35 +188,35 @@ class Menu():
 
         # select Vitamin C in the menu
         if self.menu_state == VIT_C:
-            text_vc = self.render_text(VIT_C+" "*10+"1", font, 75, YELLOW)
+            text_vc = self.render_text(VIT_C + " " * 10 + "1", font, 75, YELLOW)
         else:
-            text_vc = self.render_text(VIT_C+" "*10+"1", font, 75, WHITE)
+            text_vc = self.render_text(VIT_C + " " * 10 + "1", font, 75, WHITE)
 
         # select Calcium in the menu
         if self.menu_state == CALCIUM:
-            text_ca = self.render_text(CALCIUM+" "*13+"2", font, 75, YELLOW)
+            text_ca = self.render_text(CALCIUM + " " * 13 + "2", font, 75, YELLOW)
         else:
-            text_ca = self.render_text(CALCIUM+" "*13+"2", font, 75, WHITE)
+            text_ca = self.render_text(CALCIUM + " " * 13 + "2", font, 75, WHITE)
 
         # select Fibre in the menu
         if self.menu_state == FIBRE:
-            text_fibre = self.render_text(FIBRE+" "*16+"3", font, 75, YELLOW)
+            text_fibre = self.render_text(FIBRE + " " * 16 + "3", font, 75, YELLOW)
         else:
-            text_fibre = self.render_text(FIBRE+" "*16+"3", font, 75, WHITE)
+            text_fibre = self.render_text(FIBRE + " " * 16 + "3", font, 75, WHITE)
 
         if self.menu_state == BACK:
-            text_back = self.render_text(BACK+" "*16+"4", font, 75, YELLOW)
+            text_back = self.render_text(BACK + " " * 16 + "4", font, 75, YELLOW)
         else:
-            text_back = self.render_text(BACK+" "*16+"4", font, 75, WHITE)
+            text_back = self.render_text(BACK + " " * 16 + "4", font, 75, WHITE)
 
         title_rect = title.get_rect()
 
         # Main Menu Text
-        display.blit(title, (SCREEN_W/2 - (title_rect[2]/2), 20))
-        display.blit(text_vc, (SCREEN_W/6, 180))
-        display.blit(text_ca, (SCREEN_W/6, 280))
-        display.blit(text_fibre, (SCREEN_W/6, 380))
-        display.blit(text_back, (SCREEN_W/6, 480))
+        display.blit(title, (SCREEN_W / 2 - (title_rect[2] / 2), 20))
+        display.blit(text_vc, (SCREEN_W / 6, 180))
+        display.blit(text_ca, (SCREEN_W / 6, 280))
+        display.blit(text_fibre, (SCREEN_W / 6, 380))
+        display.blit(text_back, (SCREEN_W / 6, 480))
         pygame.display.update()
 
         pygame.display.set_caption("Nutrition-Expert")
@@ -245,31 +257,31 @@ class Menu():
 
         # select start in the menu
         if self.menu_state == START:
-            text_start = self.render_text(START+" "*16+"1", font, 75, YELLOW)
+            text_start = self.render_text(START + " " * 16 + "1", font, 75, YELLOW)
         else:
-            text_start = self.render_text(START+" "*16+"1", font, 75, WHITE)
+            text_start = self.render_text(START + " " * 16 + "1", font, 75, WHITE)
 
         # select practice in the menu
         if self.menu_state == PRACTICE:
             text_practice = self.render_text(
-                PRACTICE+" "*12+"2", font, 75, YELLOW)
+                PRACTICE + " " * 12 + "2", font, 75, YELLOW
+            )
         else:
-            text_practice = self.render_text(
-                PRACTICE+" "*12+"2", font, 75, WHITE)
+            text_practice = self.render_text(PRACTICE + " " * 12 + "2", font, 75, WHITE)
 
         # select back in the menu
         if self.menu_state == BACK:
-            text_back = self.render_text(BACK+" "*17+"3", font, 75, YELLOW)
+            text_back = self.render_text(BACK + " " * 17 + "3", font, 75, YELLOW)
         else:
-            text_back = self.render_text(BACK+" "*17+"3", font, 75, WHITE)
+            text_back = self.render_text(BACK + " " * 17 + "3", font, 75, WHITE)
 
         title_rect = title.get_rect()
 
         # Main Menu Text
-        display.blit(title, (SCREEN_W/2 - (title_rect[2]/2), 20))
-        display.blit(text_start, (SCREEN_W/6, 180))
-        display.blit(text_practice, (SCREEN_W/6, 280))
-        display.blit(text_back, (SCREEN_W/6, 380))
+        display.blit(title, (SCREEN_W / 2 - (title_rect[2] / 2), 20))
+        display.blit(text_start, (SCREEN_W / 6, 180))
+        display.blit(text_practice, (SCREEN_W / 6, 280))
+        display.blit(text_back, (SCREEN_W / 6, 380))
         pygame.display.update()
 
         pygame.display.set_caption("Nutrition-Expert")
@@ -287,7 +299,7 @@ class Menu():
                         self.menu_state = GO
                     elif event.key == pygame.K_DOWN:
                         self.menu_state = BACK
-                    
+
                     elif event.key == pygame.K_RETURN:
                         if self.menu_state == GO:
                             game_status = GAME
@@ -301,7 +313,8 @@ class Menu():
                         self.input_box1.text += event.unicode
                     # Re-render the text.
                 self.input_box1.txt_surface = FONT.render(
-                    self.input_box1.text, True, self.input_box1.color)
+                    self.input_box1.text, True, self.input_box1.color
+                )
         return game_status
 
     def render_input_menu(self, display, font):
@@ -316,22 +329,22 @@ class Menu():
 
         # select Enter in the menu
         if self.menu_state == GO:
-            text_enter = self.render_text(GO+" "*7+"1", font, 75, YELLOW)
+            text_enter = self.render_text(GO + " " * 7 + "1", font, 75, YELLOW)
         else:
-            text_enter = self.render_text(GO+" "*7+"1", font, 75, WHITE)
+            text_enter = self.render_text(GO + " " * 7 + "1", font, 75, WHITE)
 
         # select Calcium in the menu
         if self.menu_state == BACK:
-            text_back = self.render_text(BACK+" "*7+"2", font, 75, YELLOW)
+            text_back = self.render_text(BACK + " " * 7 + "2", font, 75, YELLOW)
         else:
-            text_back = self.render_text(BACK+" "*7+"2", font, 75, WHITE)
+            text_back = self.render_text(BACK + " " * 7 + "2", font, 75, WHITE)
 
         title = self.render_text("Please Input User Name", font, 90, YELLOW)
         title_rect = title.get_rect()
 
         # Main Menu Text
-        display.blit(title, (SCREEN_W/2 - (title_rect[2]/2), 20))
-        display.blit(text_enter, (SCREEN_W/2 - (title_rect[2]/2), 250))
-        display.blit(text_back, (SCREEN_W/2 - (title_rect[2]/2), 350))
+        display.blit(title, (SCREEN_W / 2 - (title_rect[2] / 2), 20))
+        display.blit(text_enter, (SCREEN_W / 2 - (title_rect[2] / 2), 250))
+        display.blit(text_back, (SCREEN_W / 2 - (title_rect[2] / 2), 350))
         pygame.display.update()
         pygame.display.set_caption("Nutrition-Expert")

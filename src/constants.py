@@ -7,13 +7,10 @@ FPS = 144
 # colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-BLUE = (0, 0, 255)
+BLUE = (0, 0, 150)
 RED = (171, 36, 36)
 GREEN = (15, 107, 33)
 YELLOW = (255, 255, 0)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
 
 # player properties
 PLAYER_SPEED = 0.75

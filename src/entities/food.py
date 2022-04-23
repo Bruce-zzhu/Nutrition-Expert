@@ -1,6 +1,4 @@
-from asyncio import Handle
 from collections import defaultdict
-from gettext import install
 import pygame
 
 # from enum import Enum
@@ -62,7 +60,7 @@ class Food(Entity):
                     )
             else:
                 scoreOutline = scoreFont.render("0", 0, WHITE)
-                scoreText = scoreFont.render("0", 0, BLACK)
+                scoreText = scoreFont.render("0", 0, BLUE)
 
             scoreRect = scoreText.get_rect(
                 center=(
