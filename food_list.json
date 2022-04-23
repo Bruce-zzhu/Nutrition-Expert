@@ -45,7 +45,7 @@
             "type": "healthy",
             "image_url": "./assets/image/foods/broccoli.svg",
             "Vitamin_C": 89,
-            "calcium": 75
+            "Calcium": 75
         },
         {
             "name": "capsicum",
