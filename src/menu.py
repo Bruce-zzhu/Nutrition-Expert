@@ -35,9 +35,9 @@ class Menu:
                 pygame.quit()
                 quit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
+                if event.key == pygame.K_UP or event.key == pygame.K_1:
                     self.menu_state = SELECT_MENU
-                elif event.key == pygame.K_DOWN:
+                elif event.key == pygame.K_DOWN or event.key == pygame.K_2:
                     self.menu_state = INTRO_MENU
 
                 if event.key == pygame.K_RETURN:
@@ -130,7 +130,19 @@ class Menu:
                 pygame.quit()
                 quit()
             if event.type == pygame.KEYDOWN:
-                if (event.key == pygame.K_UP and self.menu_state == CALCIUM) or (
+
+                # selection via number
+                if event.key == pygame.K_1:
+                    self.menu_state = VIT_C
+                elif event.key == pygame.K_2:
+                    self.menu_state = CALCIUM
+                elif event.key == pygame.K_3:
+                    self.menu_state = FIBRE
+                elif event.key == pygame.K_4:
+                    self.menu_state = BACK
+
+                # selection via direction keys
+                elif (event.key == pygame.K_UP and self.menu_state == CALCIUM) or (
                     event.key == pygame.K_UP and self.menu_state == VIT_C
                 ):
                     self.menu_state = VIT_C
@@ -207,13 +219,22 @@ class Menu:
                 pygame.quit()
                 quit()
             if event.type == pygame.KEYDOWN:
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_UP and self.menu_state != BACK:
-                        self.menu_state = START
-                    elif event.key == pygame.K_DOWN and self.menu_state != START:
-                        self.menu_state = BACK
-                    elif event.key != pygame.K_RETURN:
-                        self.menu_state = PRACTICE
+
+                # selection via number
+                if event.key == pygame.K_1:
+                    self.menu_state = START
+                elif event.key == pygame.K_2:
+                    self.menu_state = PRACTICE
+                elif event.key == pygame.K_3:
+                    self.menu_state = BACK
+
+                # selection via direction keys
+                elif event.key == pygame.K_UP and self.menu_state != BACK:
+                    self.menu_state = START
+                elif event.key == pygame.K_DOWN and self.menu_state != START:
+                    self.menu_state = BACK
+                elif event.key != pygame.K_RETURN:
+                    self.menu_state = PRACTICE
 
                 if event.key == pygame.K_RETURN:
                     if self.menu_state == START:
@@ -274,9 +295,9 @@ class Menu:
                 quit()
             if event.type == pygame.KEYDOWN:
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_UP:
+                    if event.key == pygame.K_UP or event.key == pygame.K_1:
                         self.menu_state = GO
-                    elif event.key == pygame.K_DOWN:
+                    elif event.key == pygame.K_DOWN or event.key == pygame.K_2:
                         self.menu_state = BACK
 
                     elif event.key == pygame.K_RETURN:
@@ -325,9 +346,9 @@ class Menu:
         with open("leaderboard.json", "r") as f:
             board = json.loads(f.read())
 
-        board['time']['username'] = username
+        board["time"]["username"] = username
 
-        with open('leaderboard.json', 'w') as f:
+        with open("leaderboard.json", "w") as f:
             json.dump(board, f)
 
         # Main Menu Text
@@ -357,11 +378,11 @@ class Menu:
         path = "leaderboard.json"
         with open(path, "r") as f:
             board = json.loads(f.read())
-        
-        username = board['username']
-        score = board['score']
-        
-        time = board['time']
+
+        username = board["username"]
+        score = board["score"]
+
+        time = board["time"]
 
         font_size = 40
         line_margin = 50
