@@ -20,8 +20,7 @@ class Game:
     time_passed: int
     isPractice: bool
 
-    def __init__(self, menu_state):
-        self.isPractice = menu_state == "PRACTICE"
+    def __init__(self):
         self.start_game()
         self.time_passed = 0
         self.stage = VIT_C
