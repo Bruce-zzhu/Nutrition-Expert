@@ -111,12 +111,12 @@ class Game:
         surface = font.render(text, True, color)
         display.blit(surface, position)
 
-    def format_text(self, display, textFont, text, textSize, color: Color, position: Vector2):
+    def format_text(
+        self, display, textFont, text, textSize, color: Color, position: Vector2
+    ):
         font = pygame.font.Font(textFont, textSize)
         surface = font.render(text, True, color)
         display.blit(surface, position)
-
-        
 
     def render(self, display, font):
         # load background
@@ -136,17 +136,25 @@ class Game:
                 display, font, "Nutrition Expert", WHITE, (SCREEN_W // 2 - 170, 25)
             )
             self.format_text(
-                display, font_str, f"Satisation level: {self.player.satiation}", 50, RED, (50, 100)
+                display,
+                font_str,
+                f"Satisation level: {self.player.satiation}",
+                50,
+                RED,
+                (50, 100),
             )
             self.format_text(
-                display, font_str, f"Hydration level: {self.player.hydration}", 50, RED, (50, 150)
+                display,
+                font_str,
+                f"Hydration level: {self.player.hydration}",
+                50,
+                RED,
+                (50, 150),
             )
 
             return GAME
         else:
             return BOARD
-
-        
 
     def update(self, delta):
         for i in range(len(self.entities) - 1, -1, -1):
