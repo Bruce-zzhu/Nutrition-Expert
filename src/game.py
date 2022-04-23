@@ -152,7 +152,10 @@ class Game:
                 (50, 150),
             )
 
-            return GAME
+            if self.isPractice:
+                return PRACTICE
+            else:
+                return GAME
         else:
             return BOARD
 

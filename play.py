@@ -28,7 +28,6 @@ def main():
         events = pygame.event.get()
 
         if status == GAME or status == PRACTICE:
-            print(status)
             game.isPractice = status == PRACTICE
             game.stage = menu.game_stage
             game.handle_input(events)
