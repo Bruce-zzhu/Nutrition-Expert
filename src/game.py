@@ -134,8 +134,7 @@ class Game:
                     obj.render(display)
 
             self.render_text(
-                display, font, "Nutrition Expert", WHITE, (
-                    SCREEN_W // 2 - 170, 25)
+                display, font, "Nutrition Expert", WHITE, (SCREEN_W // 2 - 170, 25)
             )
             self.format_text(
                 display,
@@ -174,26 +173,45 @@ class Game:
 
             board["time"]["score"] = str(scores)
 
-            username = board['time']['username']
-            scores = board['time']['score']
+            username = board["time"]["username"]
+            scores = board["time"]["score"]
 
             if not self.isPractice:
                 if scores >= board["score"]["1"]:
-                    board["score"]["1"], board["score"]["2"], board["score"]["3"] = scores, board["score"]["1"], board["score"]["2"]
-                    board["username"]["1"], board["username"]["2"], board["username"]["3"] = username, board["score"]["1"], board["score"]["2"]
+                    board["score"]["1"], board["score"]["2"], board["score"]["3"] = (
+                        scores,
+                        board["score"]["1"],
+                        board["score"]["2"],
+                    )
+                    (
+                        board["username"]["1"],
+                        board["username"]["2"],
+                        board["username"]["3"],
+                    ) = (username, board["score"]["1"], board["score"]["2"])
 
                 elif scores >= board["score"]["2"]:
-                    board["score"]["2"], board["score"]["3"] = scores, board["score"]["2"]
-                    board["username"]["2"], board["username"]["3"] = username, board["score"]["2"]
+                    board["score"]["2"], board["score"]["3"] = (
+                        scores,
+                        board["score"]["2"],
+                    )
+                    board["username"]["2"], board["username"]["3"] = (
+                        username,
+                        board["score"]["2"],
+                    )
 
                 elif scores >= board["score"]["3"]:
                     board["score"]["3"] = scores
                     board["username"]["3"] = username
 
-            with open('leaderboard.json', 'w') as f:
+            with open("leaderboard.json", "w") as f:
                 json.dump(board, f)
 
+            # reset stage
             self.player.reset()
+            for i in range(len(self.entities) - 1, -1, -1):
+                obj = self.entities[i]
+                if not isinstance(obj, Player):
+                    del self.entities[i]
 
             return BOARD
 
