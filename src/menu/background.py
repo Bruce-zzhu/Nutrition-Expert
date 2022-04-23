@@ -49,7 +49,7 @@ yellow=(255, 255, 0)
 
 # Game Fonts
 font = "assets/font/Montserrat-Regular.ttf"
-font_text = pygame.font.SysFont('Arial', 24)
+font_text = pygame.font.SysFont('Arial', 29)
 
 # Main Menu image
 picture = pygame.image.load("assets/image/foods/background.png")
@@ -78,25 +78,16 @@ def introduction():
         title=text_format("Introduction", font, 90, white)
         menu=text_format("Menu", font, 85, white)
 
-        text_intro = "Nutrition Expert is designed to provide users the knowledge about food and nutrition.\nRules:\n\
-                        1. Select a specific nutrient that you are interested in\n\
-                        2. Move the character to eat the food that contains the chosen nutrient\n\
-                        3. The scores depend on how much the chosen nutrient the food contains \n\
-                        4. Each food (except for water) will increase character's satiation level\n\
-                        5. User's hydration level decreases by time. Drinking water increases the hydration level\n\
-                        6. Game ends when either user's satiation level is full or hydration level is 0\n\
-                        7. There is a leaderboard recording the top 5 users for each nutrient"
+        text_intro = " Nutrition Expert is designed to provide users the knowledge about food and nutrition.\n\n Game rules:\n 1. Select a specific nutrient that you are interested in\n 2. Move the character to eat the food that contains the chosen nutrient\n 3. The scores depend on how much the chosen nutrient the food contains \n 4. Each food (except for water) will increase character's satiation level\n 5. User's hydration level decreases by time. Drinking water increases the hydration level\n 6. Game ends when either user's satiation level is full or hydration level is 0\n 7. There is a leaderboard recording the top 5 users for each nutrient"
         
         #select back in the menu
-        text_back=text_format("Back", font, 40, yellow)
+        text_back=text_format("Press Enter Back To Main Menu ", font, 40, yellow)
         title_rect=title.get_rect()
-        text_intro_surface = text_format(text_intro, font, 0, white)
 
         # Main Menu Text
-        screen.blit(title, (screen_width/2 - (title_rect[2]/2), 20))
-        screen.blit(text_back, (screen_width/8, 150))
-        # screen.blit(text_intro_surface, )
-        blit_text(text_intro, (screen_width/8, 220), font_text)
+        screen.blit(title, (screen_width/2 - (title_rect[2]/2)-20, 20))
+        screen.blit(text_back, (screen_width/10, 500))
+        blit_text(text_intro, (screen_width/11, 150), font_text)
         pygame.display.update()
         clock.tick(FPS)
         pygame.display.set_caption("Nutrition-Expert")
