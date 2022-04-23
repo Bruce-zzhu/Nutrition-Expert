@@ -315,6 +315,15 @@ class Menu:
         title = self.render_text("Please Input User Name", font, 90, YELLOW)
         title_rect = title.get_rect()
 
+        username = self.input_box1.text
+        with open("leaderboard.json", "r") as f:
+            board = json.loads(f.read())
+
+        board['time']['username'] = username
+
+        with open('leaderboard.json', 'w') as f:
+            json.dump(board, f)
+
         # Main Menu Text
         display.blit(title, (SCREEN_W / 2 - (title_rect[2] / 2), 20))
         display.blit(text_enter, (SCREEN_W / 2 - (title_rect[2] / 2), 250))
@@ -342,11 +351,11 @@ class Menu:
         path = "leaderboard.json"
         with open(path, "r") as f:
             board = json.loads(f.read())
-
-        username = board["username"]
-        score = board["score"]
-
-        time = board["time"]
+        
+        username = board['username']
+        score = board['score']
+        
+        time = board['time']
 
         font_size = 40
         line_margin = 50

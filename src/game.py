@@ -19,6 +19,7 @@ class Game:
     mode: str
     time_passed: int
     isPractice: bool
+    player: Player
 
     def __init__(self):
         self.start_game()
@@ -165,6 +166,18 @@ class Game:
             else:
                 return GAME
         else:
+            scores = self.player.scores
+
+            with open("leaderboard.json", "r") as f:
+                board = json.loads(f.read())
+
+            board['time']['score'] = str(scores)
+
+            
+
+            with open('leaderboard.json', 'w') as f:
+                json.dump(board, f)
+
             return BOARD
 
     def update(self, delta):
