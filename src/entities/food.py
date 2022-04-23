@@ -26,9 +26,11 @@ class Food(Entity):
         self.eaten = False
         self.velocity.x = 0
         self.velocity.y = FOOD_STATS["FOOD_VEL"]
+        self.width = FOOD_STATS["MAX_SIZE"] * self.width / self.height
+        self.height = FOOD_STATS["MAX_SIZE"]
         self.image = pygame.transform.scale(
             self.image,
-            (FOOD_STATS["MAX_SIZE"] * self.width / self.height, FOOD_STATS["MAX_SIZE"]),
+            (self.width, self.height),
         )
         self.stage = params[F_PARAMS["STAGE"]]
 
