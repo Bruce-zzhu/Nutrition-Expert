@@ -1,4 +1,3 @@
-from urllib.request import proxy_bypass
 import pygame
 from src.constants import (
     FULL_VALUE,
@@ -56,8 +55,6 @@ class Player(Entity):
         self.scores += food.score
         self.satiation += food.satiation
         food.eaten = True
-        if isinstance(food, Healthy) or isinstance(food, Unhealthy):
-            self.scores += food.nutrition["stage"]
         if isinstance(food, Water) or isinstance(food, Unhealthy):
             self.hydration += food.hydration
         if isinstance(food, Unhealthy):
