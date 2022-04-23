@@ -18,7 +18,7 @@ def main():
 
     display = pygame.display.set_mode((SCREEN_W, SCREEN_H))
     font_str = "assets/font/HyFWoolBall-2.ttf"
-    font = pygame.font.SysFont("assets/font/HyFWoolBall-2.ttf", 90)
+    font = pygame.font.SysFont("assets/font/HyFWoolBall-2.ttf", 70)
 
     running = True
     menu = Menu()
