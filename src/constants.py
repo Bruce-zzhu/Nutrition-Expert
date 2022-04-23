@@ -11,6 +11,7 @@ BLUE = (0, 0, 150)
 RED = (171, 36, 36)
 GREEN = (15, 107, 33)
 YELLOW = (255, 255, 0)
+CYAN = (64, 195, 213)
 
 # player properties
 PLAYER_SPEED = 0.75
@@ -18,6 +19,7 @@ PLAYER_IMAGE_PATH = "assets/image/player/"
 PLAYER_DEFAULT_IMG = "Idle_0.png"
 PLAYER_SIZE = 100
 FULL_VALUE = 100
+HYDRATION_DECREASE = 4
 
 FOOD_IMAGE_PATH = "assets/image/foods/"
 FOOD_STATS = {
@@ -60,3 +62,5 @@ INPUT_MENU = "Input"
 
 
 F_PARAMS = {"NUTRIENTS": 0, "FOOD": 1, "X": 2, "WIDTH": 3, "HEIGHT": 4, "STAGE": 5}
+
+SCORE_FONT_SIZE = 42

@@ -138,17 +138,25 @@ class Game:
             self.format_text(
                 display,
                 font_str,
+                f"Score: {self.player.scores}",
+                SCORE_FONT_SIZE,
+                WHITE,
+                (50, 50),
+            )
+            self.format_text(
+                display,
+                font_str,
                 f"Satisation level: {self.player.satiation}",
-                50,
-                RED,
+                SCORE_FONT_SIZE,
+                YELLOW,
                 (50, 100),
             )
             self.format_text(
                 display,
                 font_str,
                 f"Hydration level: {self.player.hydration}",
-                50,
-                RED,
+                SCORE_FONT_SIZE,
+                CYAN,
                 (50, 150),
             )
 
@@ -174,3 +182,7 @@ class Game:
         if self.time_passed == 0:
             self.generate_food()
         self.time_passed = (self.time_passed + 1) % (FPS * FOOD_STATS["FOOD_FREQ"])
+
+        # decrease player hydration over time
+        if not self.time_passed % (FPS * 2):
+            self.player.hydration -= HYDRATION_DECREASE
