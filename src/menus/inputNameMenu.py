@@ -50,6 +50,8 @@ FONT = pygame.font.Font(None, 32)
 
 class InputBox:
 
+    text: str
+
     def __init__(self, x, y, w, h, text=''):
         self.rect = pygame.Rect(x, y, w, h)
         self.color = pygame.Color(yellow)
