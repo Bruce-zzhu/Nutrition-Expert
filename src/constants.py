@@ -11,6 +11,9 @@ BLUE = (0, 0, 255)
 RED = (171, 36, 36)
 GREEN = (15, 107, 33)
 YELLOW = (255, 255, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
 
 # player properties
 PLAYER_SPEED = 0.75
@@ -52,7 +55,10 @@ START_READY = "start_game"
 INTRO_MENU = "intro_menu"
 BACK = "Back"
 START = "Start"
+GO = "GO!!!"
 PRACTICE = "Practice"
+BOARD = "Leaderboard"
+INPUT_MENU = "Input"
 
 
 F_PARAMS = {"NUTRIENTS": 0, "FOOD": 1, "X": 2, "WIDTH": 3, "HEIGHT": 4, "STAGE": 5}

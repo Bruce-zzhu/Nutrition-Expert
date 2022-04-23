@@ -5,7 +5,7 @@ from pygame import Color, Vector2
 from random import randint, choice
 from pygame.locals import K_RIGHT, K_SPACE, K_DOWN, K_UP, K_LEFT, K_ESCAPE
 from src.entities.player import Player
-from src.constants import FOOD_STATS, FPS, SCREEN_W, SCREEN_H, BLACK, VIT_C, WHITE
+from src.constants import *
 from src.entities.food import *
 from src.menu import Menu
 
@@ -20,8 +20,7 @@ class Game:
     time_passed: int
     isPractice: bool
 
-    def __init__(self, menu_state):
-        self.isPractice = menu_state == "PRACTICE"
+    def __init__(self):
         self.start_game()
         self.time_passed = 0
         self.stage = VIT_C
@@ -118,21 +117,28 @@ class Game:
         picture = pygame.transform.scale(picture, (SCREEN_W, SCREEN_H))
         display.blit(picture, (0, 0))
 
-        for obj in self.entities:
-            if isinstance(obj, Food):
-                obj.render(display, self.isPractice)
-            else:
-                obj.render(display)
+        if not self.player.expired:
+            for obj in self.entities:
+                if isinstance(obj, Food):
+                    obj.render(display, self.isPractice)
+                else:
+                    obj.render(display)
 
-        self.render_text(
-            display, font, "Nutrition Expert", WHITE, (SCREEN_W // 2 - 70, 25)
-        )
-        self.render_text(
-            display, font, f"Satisation level: {self.player.satiation}", WHITE, (50, 25)
-        )
-        self.render_text(
-            display, font, f"Hydration level: {self.player.hydration}", WHITE, (50, 50)
-        )
+            self.render_text(
+                display, font, "Nutrition Expert", WHITE, (SCREEN_W // 2 - 70, 25)
+            )
+            self.render_text(
+                display, font, f"Satisation level: {self.player.satiation}", RED, (50, 25)
+            )
+            self.render_text(
+                display, font, f"Hydration level: {self.player.hydration}", WHITE, (50, 50)
+            )
+
+            return GAME
+        else:
+            return BOARD
+
+        
 
     def update(self, delta):
         for i in range(len(self.entities) - 1, -1, -1):

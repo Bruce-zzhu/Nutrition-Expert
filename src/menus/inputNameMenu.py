@@ -156,9 +156,12 @@ def main_menu():
 
 
 
-#Initialize the Game
-main_menu()
-pygame.quit()
-quit()
+
+
+if __name__ == '__main__':
+    #Initialize the Game
+    main_menu()
+    pygame.quit()
+    quit()
 
 
