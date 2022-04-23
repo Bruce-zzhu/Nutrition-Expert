@@ -1,12 +1,8 @@
-from dis import dis
-from tkinter.tix import MAIN
 import pygame
 from src.game import Game
 from src.menu import Menu
 from src.constants import *
 from src.entities.food import *
-
-stage: str
 
 
 def main():
@@ -18,7 +14,7 @@ def main():
 
     display = pygame.display.set_mode((SCREEN_W, SCREEN_H))
     font_str = "assets/font/HyFWoolBall-2.ttf"
-    font = pygame.font.SysFont("assets/font/HyFWoolBall-2.ttf", 90)
+    font = pygame.font.SysFont("assets/font/HyFWoolBall-2.ttf", 70)
 
     running = True
     menu = Menu()
@@ -55,7 +51,6 @@ def main():
         elif status == BOARD:
             status = menu.leaderboard_handle_input(events)
             menu.rednder_leaderboard(display, font_str)
-            
 
         pygame.display.update()
         for e in events:

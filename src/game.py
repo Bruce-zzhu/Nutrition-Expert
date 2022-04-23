@@ -111,11 +111,19 @@ class Game:
         surface = font.render(text, True, color)
         display.blit(surface, position)
 
+    def format_text(self, display, textFont, text, textSize, color: Color, position: Vector2):
+        font = pygame.font.Font(textFont, textSize)
+        surface = font.render(text, True, color)
+        display.blit(surface, position)
+
+        
+
     def render(self, display, font):
         # load background
         picture = pygame.image.load("assets/image/background.png")
         picture = pygame.transform.scale(picture, (SCREEN_W, SCREEN_H))
         display.blit(picture, (0, 0))
+        font_str = "assets/font/HyFWoolBall-2.ttf"
 
         if not self.player.expired:
             for obj in self.entities:
@@ -125,13 +133,13 @@ class Game:
                     obj.render(display)
 
             self.render_text(
-                display, font, "Nutrition Expert", WHITE, (SCREEN_W // 2 - 70, 25)
+                display, font, "Nutrition Expert", WHITE, (SCREEN_W // 2 - 170, 25)
             )
-            self.render_text(
-                display, font, f"Satisation level: {self.player.satiation}", RED, (50, 25)
+            self.format_text(
+                display, font_str, f"Satisation level: {self.player.satiation}", 50, RED, (50, 100)
             )
-            self.render_text(
-                display, font, f"Hydration level: {self.player.hydration}", WHITE, (50, 50)
+            self.format_text(
+                display, font_str, f"Hydration level: {self.player.hydration}", 50, RED, (50, 150)
             )
 
             return GAME

@@ -7,13 +7,10 @@ FPS = 144
 # colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-BLUE = (0, 0, 255)
+BLUE = (0, 0, 150)
 RED = (171, 36, 36)
 GREEN = (15, 107, 33)
 YELLOW = (255, 255, 0)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
 
 # player properties
 PLAYER_SPEED = 0.75
@@ -36,12 +33,13 @@ FOOD_STATS = {
     "SHRINKAGE": 4,
     "MAX_SIZE": 50,
     "FONT": "assets/font/Montserrat-Regular.ttf",
-    "FONT_SIZE": 24,
+    "FONT_SIZE": 20,
+    "UNITS": {"Vit C": "mg", "Calcium": "mg", "Fibre": "g"},
 }
 
 
 # nutrients
-VIT_C = "Vitamin_C"
+VIT_C = "Vit C"
 CALCIUM = "Calcium"
 FIBRE = "Fibre"
 
