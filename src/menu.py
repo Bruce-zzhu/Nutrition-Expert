@@ -66,11 +66,11 @@ class Menu:
         # select Calcium in the menu
         if self.menu_state == INTRO_MENU:
             text_introduction = self.render_text(
-                INTRO_MENU + " " * 7 + "2", font, 75, YELLOW
+                INTRO_MENU + " " * 9 + "2", font, 75, YELLOW
             )
         else:
             text_introduction = self.render_text(
-                INTRO_MENU + " " * 7 + "2", font, 75, WHITE
+                INTRO_MENU + " " * 9 + "2", font, 75, WHITE
             )
 
         title_rect = title.get_rect()
@@ -101,19 +101,25 @@ class Menu:
         bg_img = self.render_background()
         display.blit(bg_img, (0, 0))
 
+        picture2 = pygame.image.load("assets/image/intro_background3.jpg")
+        picture2 = pygame.transform.scale(
+            picture2, (SCREEN_W * 9 / 10, SCREEN_H * 12 / 20)
+        )
+        display.blit(picture2, (45, 105))
+
         title = self.render_text("Introduction", font, 90, WHITE)
         menu = self.render_text("Menu", font, 85, WHITE)
 
         text_intro = " Nutrition Expert is designed to provide users the knowledge about food and nutrition.\n\n Game rules:\n 1. Select a specific nutrient that you are interested in\n 2. Move the character to eat the food that contains the chosen nutrient\n 3. The scores depend on how much the chosen nutrient the food contains \n 4. Each food (except for water) will increase character's satiation level\n 5. User's hydration level decreases by time. Drinking water increases the hydration level\n 6. Game ends when either user's satiation level is full or hydration level is 0\n 7. There is a leaderboard recording the top 5 users for each nutrient"
 
         # select back in the menu
-        text_back = self.render_text("Press Enter Back To Main Menu ", font, 40, YELLOW)
+        text_back = self.render_text("Press Enter Back To Main Menu ", font, 45, YELLOW)
         title_rect = title.get_rect()
 
         # Main Menu Text
         display.blit(title, (SCREEN_W / 2 - (title_rect[2] / 2), 20))
-        display.blit(text_back, (SCREEN_W / 10, 510))
-        blit_text(text_intro, (SCREEN_W / 11, 150), pygame.font.SysFont("Arial", 29))
+        display.blit(text_back, (SCREEN_W / 10, 600))
+        blit_text(text_intro, (SCREEN_W / 11, 150), pygame.font.SysFont("Arial", 26))
         pygame.display.update()
         pygame.display.set_caption("Nutrition-Expert")
 

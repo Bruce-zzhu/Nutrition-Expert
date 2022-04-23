@@ -134,7 +134,8 @@ class Game:
                     obj.render(display)
 
             self.render_text(
-                display, font, "Nutrition Expert", WHITE, (SCREEN_W // 2 - 170, 25)
+                display, font, "Nutrition Expert", WHITE, (
+                    SCREEN_W // 2 - 170, 25)
             )
             self.format_text(
                 display,
@@ -173,7 +174,23 @@ class Game:
 
             board["time"]["score"] = str(scores)
 
-            with open("leaderboard.json", "w") as f:
+            username = board['time']['username']
+            scores = board['time']['score']
+
+            if not self.isPractice:
+                if scores >= board["score"]["1"]:
+                    board["score"]["1"], board["score"]["2"], board["score"]["3"] = scores, board["score"]["1"], board["score"]["2"]
+                    board["username"]["1"], board["username"]["2"], board["username"]["3"] = username, board["score"]["1"], board["score"]["2"]
+
+                elif scores >= board["score"]["2"]:
+                    board["score"]["2"], board["score"]["3"] = scores, board["score"]["2"]
+                    board["username"]["2"], board["username"]["3"] = username, board["score"]["2"]
+
+                elif scores >= board["score"]["3"]:
+                    board["score"]["3"] = scores
+                    board["username"]["3"] = username
+
+            with open('leaderboard.json', 'w') as f:
                 json.dump(board, f)
 
             self.player.reset()

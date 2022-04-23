@@ -1,1 +1,5 @@
-{"username": {"1": "i'm top 1", "2": "bruce", "3": "Hey"}, "score": {"1": "130", "2": "123", "3": "111"}, "time": {"score": "884", "username": ""}}
+{"username": 
+    {"1": "i'm top 1", "2": "bruce", "3": "Hey"}, 
+"score": {"1": "130", "2": "123", "3": "111"}, 
+"time": 
+    {"score": "414", "username": "qwe"}}
