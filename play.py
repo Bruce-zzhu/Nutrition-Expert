@@ -14,7 +14,7 @@ def main():
 
     display = pygame.display.set_mode((SCREEN_W, SCREEN_H))
     font_str = "assets/font/HyFWoolBall-2.ttf"
-    font = pygame.font.SysFont("assets/font/HyFWoolBall-2.ttf", 90)
+    font = pygame.font.SysFont("assets/font/HyFWoolBall-2.ttf", 70)
 
     running = True
     menu = Menu()
@@ -32,7 +32,7 @@ def main():
             game.stage = menu.game_stage
             game.handle_input(events)
             game.update(delta)
-            game.render(display, font)
+            status = game.render(display, font)
         elif status == MAIN_MENU:
             status = menu.main_menu_handle_input(events)
             menu.render_main_menu(display, font_str)
@@ -49,7 +49,8 @@ def main():
             status = menu.input_menu_handle_input(events)
             menu.render_input_menu(display, font_str)
         elif status == BOARD:
-            pass
+            status = menu.leaderboard_handle_input(events)
+            menu.rednder_leaderboard(display, font_str)
 
         pygame.display.update()
         for e in events:
