@@ -42,7 +42,7 @@ class Food(Entity):
 
     def render(self, display: pygame.Surface, practice: bool):
         Entity.render(self, display)
-        if not practice:
+        if practice:
             scoreFont = pygame.font.SysFont(
                 ["helvetica", "arial"], FOOD_STATS["FONT_SIZE"], bold=True
             )
