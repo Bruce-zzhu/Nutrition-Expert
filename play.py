@@ -10,11 +10,18 @@ from src.entities.food import *
 stage: str
 
 
+
 def main():
     pygame.init()
+    pygame.mixer.init()
+    pygame.mixer.music.load('assets/sounds/bgm.wav')
+    pygame.mixer.music.set_volume(0.3) 
+    pygame.mixer.music.play(loops=-1)
+
     display = pygame.display.set_mode((SCREEN_W, SCREEN_H))
     font_str = "assets/font/HyFWoolBall-2.ttf"
     font = pygame.font.SysFont("assets/font/HyFWoolBall-2.ttf", 90)
+
 
     running = True
     menu = Menu()
@@ -23,6 +30,9 @@ def main():
     status = MAIN_MENU
     game_clock = pygame.time.Clock()
     while running:
+
+
+
         delta = game_clock.tick(FPS)
         events = pygame.event.get()
 
