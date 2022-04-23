@@ -1,3 +1,4 @@
+from unicodedata import name
 import pygame
 from pygame.locals import *
 import os
@@ -27,7 +28,7 @@ yellow=(255, 255, 0)
 # Game Fonts
 font = "assets/font/HyFWoolBall-2.ttf"
 font_size = 40
-line_margin = 60
+line_margin = 50
 
 # Main Menu image
 picture = pygame.image.load("assets/image/background.png")
@@ -55,54 +56,75 @@ def main():
     while running:
 
         ### SET LEADERBOARD DATA ###
+        
         username = {
             1: "top1 nameeeeee",
-            2: "nameeeee",
-            3: "22",
-            4: "namaajsnxkjnlksx",
-            5: "0ijnbjijnnk"
+            2: "bruce",
+            3: "22"
         }
         score = {
             1: "12",
-            2: "3211",
-            3: "111",
-            4: "22",
-            5: "9292"
+            2: "123",
+            3: "111"
+        } 
+        
+        time = {
+            "score":"123",
+            "username": "bruce"
         }
 
-        # pygame.QUIT listener
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 pygame.quit()
                 quit()
+            if event.type==pygame.KEYDOWN:
+                if event.key==pygame.K_RETURN:
+                        print("back to main menu")
         
         # Set display title
-        title = text_format("Game Leaderboard", font, 100, white)
+        title = text_format("Leaderboard", font, 100, white)
         title_rect = title.get_rect()
         title_pos_horizontal = screen_width/2 - (title_rect[2]/2)
         title_position = (title_pos_horizontal, 20)
 
-        selectable_back = text_format("Back", font, font_size, yellow)
-        selectable_back_pos = (title_pos_horizontal, 160)
+        selectable_back = text_format("Press Enter Back To Main Menu", font, font_size, yellow)
+        selectable_back_pos = (title_pos_horizontal, 485)
+
+        name = text_format("Your record: "+ time['username']+" ( "+time['score']+" )", font, font_size, yellow)
+        name_pos = (title_pos_horizontal, 125)
+        
+        history = text_format("TOP 3", font, 65, white)
+        history_pos = (title_pos_horizontal, 205)
 
         # Screen blit for leaderboard username and score display
         def get_position_for_username_line(line_number):
-            base = 180
+            base = 240
             return (title_pos_horizontal, base + line_margin * line_number)
 
         def get_position_for_score_line(line_number):
-            base = 200
-            return (title_rect.right, base + line_margin * line_number)
+            base = 240
+            return (title_rect.right+170, base + line_margin * line_number)
 
         # Set screen blits
-        screen.blit(title, title_position)
+        screen.blit(name, name_pos)
         screen.blit(selectable_back, selectable_back_pos)
+        
+        screen.blit(history, history_pos)
+        screen.blit(title, title_position)
+        
 
         
         for i in range(1, len(username) + 1):
             # Make Surfaces and update username and score dictionaries
-            username[i] = text_format_for_listing(username[i])
-            score[i] = text_format_for_listing(score[i])
+            if username[i] != time['username']:
+                username[i] = text_format(username[i], font, 35, white)
+                score[i] = text_format(score[i], font, 35, white)
+            else:
+                
+                username[i] = text_format(username[i], font, 45, yellow)
+                score[i] = text_format(score[i], font, 45, yellow)
+                
+            
 
             # Set screen blits for usernames and scores
             screen.blit(username[i], get_position_for_username_line(i))
