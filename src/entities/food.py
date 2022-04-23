@@ -49,8 +49,8 @@ class Food(Entity):
             )
             scoreRect = scoreText.get_rect(
                 center=(
-                    self.x + FOOD_STATS["MAX_SIZE"] * self.width / self.height / 2,
-                    self.y + FOOD_STATS["MAX_SIZE"] / 2,
+                    self.x + self.width / 2,
+                    self.y + self.height / 2,
                 )
             )
             display.blit(scoreText, scoreRect)
