@@ -19,7 +19,7 @@ FULL_VALUE = 100
 FOOD_IMAGE_PATH = "assets/image/foods/"
 FOOD_STATS = {
     "FOODS": "./food_list.json",
-    "FOOD_VEL": 0.5,
+    "FOOD_VEL": 0.25,
     "FOOD_FREQ": 0.5,
     "H_SCORE": 10,
     "W_SCORE": 0,
@@ -29,8 +29,9 @@ FOOD_STATS = {
     "U_FIBRE": 2,
     "SHRINKAGE": 4,
     "MAX_SIZE": 50,
+    "FONT": "assets/font/Montserrat-Regular.ttf",
+    "FONT_SIZE": 20,
 }
-
 
 
 # nutrients

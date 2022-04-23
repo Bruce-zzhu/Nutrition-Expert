@@ -18,8 +18,10 @@ class Game:
     entities: list
     mode: str
     time_passed: int
+    isPractice: bool
 
-    def __init__(self):
+    def __init__(self, menu_state):
+        self.isPractice = menu_state == "PRACTICE"
         self.start_game()
         self.time_passed = 0
         self.stage = VIT_C
@@ -117,8 +119,10 @@ class Game:
         display.blit(picture, (0, 0))
 
         for obj in self.entities:
-            # if isinstance(obj, Player) or isinstance(obj, Food):
-            obj.render(display)
+            if isinstance(obj, Food):
+                obj.render(display, self.isPractice)
+            else:
+                obj.render(display)
 
         self.render_text(
             display, font, "Nutrition Expert", WHITE, (SCREEN_W // 2 - 70, 25)

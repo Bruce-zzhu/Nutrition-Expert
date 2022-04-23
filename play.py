@@ -17,15 +17,15 @@ def main():
     font = pygame.font.SysFont("assets/font/HyFWoolBall-2.ttf", 90)
 
     running = True
-    game = Game()
     menu = Menu()
+    game = Game(menu.menu_state)
 
     status = MAIN_MENU
     game_clock = pygame.time.Clock()
     while running:
         delta = game_clock.tick(FPS)
         events = pygame.event.get()
-        
+
         if status == GAME:
             game.stage = menu.game_stage
             game.handle_input(events)
@@ -43,7 +43,6 @@ def main():
         elif status == INTRO_MENU:
             status = menu.intro_menu_handle_input(events)
             menu.render_intro_menu(display, font_str)
-            
 
         pygame.display.update()
         for e in events:

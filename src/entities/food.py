@@ -5,13 +5,14 @@ import pygame
 
 from src.entities.entity import Entity
 
-from src.constants import SCREEN_H, FOOD_STATS, F_PARAMS
+from src.constants import *
 
 # nutrients = Enum("nutrients", "vit_c calc fibre")
 class Food(Entity):
     satiation: int
     score: int
     eaten: bool
+    stage: str
 
     def __init__(self, params):
         super().__init__(
@@ -25,13 +26,34 @@ class Food(Entity):
         self.eaten = False
         self.velocity.x = 0
         self.velocity.y = FOOD_STATS["FOOD_VEL"]
+        self.width = FOOD_STATS["MAX_SIZE"] * self.width / self.height
+        self.height = FOOD_STATS["MAX_SIZE"]
         self.image = pygame.transform.scale(
-            self.image, (FOOD_STATS["MAX_SIZE"], FOOD_STATS["MAX_SIZE"])
+            self.image,
+            (self.width, self.height),
         )
+        self.stage = params[F_PARAMS["STAGE"]]
 
     def tick(self, delta: int, objects: "list"):
         if self.eaten or self.y < 0 or self.y > SCREEN_H:
             self.kill()
+
+    def render(self, display: pygame.Surface, practice: bool):
+        Entity.render(self, display)
+        if practice and not isinstance(self, Water):
+            scoreFont = pygame.font.Font(
+                FOOD_STATS["FONT"], FOOD_STATS["FONT_SIZE"], bold=pygame.font.Font.bold
+            )
+            scoreText = scoreFont.render(
+                str(self.nutrition[self.stage] + (self.score)), 0, BLACK
+            )
+            scoreRect = scoreText.get_rect(
+                center=(
+                    self.x + self.width / 2,
+                    self.y + self.height / 2,
+                )
+            )
+            display.blit(scoreText, scoreRect)
 
 
 class Healthy(Food):
@@ -42,10 +64,7 @@ class Healthy(Food):
         self.score = FOOD_STATS["H_SCORE"]
         self.satiation = FOOD_STATS["SATIATION"]
         self.nutrition = defaultdict(int)
-
-        self.nutrition[params[F_PARAMS["STAGE"]]] = params[F_PARAMS["FOOD"]][
-            params[F_PARAMS["STAGE"]]
-        ]
+        self.nutrition[self.stage] = params[F_PARAMS["FOOD"]][self.stage]
 
 
 class Water(Food):
@@ -69,4 +88,3 @@ class Unhealthy(Food):
         self.nutrition = defaultdict(int)
         self.nutrition["fibre"] = FOOD_STATS["U_FIBRE"]
         self.satiation = FOOD_STATS["SATIATION"]
-        print(type(self.image))
