@@ -342,14 +342,11 @@ class Menu:
         path = "leaderboard.json"
         with open(path, "r") as f:
             board = json.loads(f.read())
-        
-        
-        
-        
-        username = board['username']
-        score = board['score']
-        
-        time = board['time']
+
+        username = board["username"]
+        score = board["score"]
+
+        time = board["time"]
 
         font_size = 40
         line_margin = 50
@@ -394,15 +391,13 @@ class Menu:
 
         for i in range(1, len(username) + 1):
             # Make Surfaces and update username and score dictionaries
-            if username[f"{i}"] != time['username']:
+            if username[f"{i}"] != time["username"]:
                 username[f"{i}"] = self.render_text(username[f"{i}"], font, 35, WHITE)
                 score[f"{i}"] = self.render_text(score[f"{i}"], font, 35, WHITE)
             else:
-                
+
                 username[f"{i}"] = self.render_text(username[f"{i}"], font, 45, YELLOW)
                 score[f"{i}"] = self.render_text(score[f"{i}"], font, 45, YELLOW)
-                
-            
 
             # Set display blits for usernames and scores
             display.blit(username[f"{i}"], get_position_for_username_line(i))
