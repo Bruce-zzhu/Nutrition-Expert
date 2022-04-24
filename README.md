@@ -1,5 +1,8 @@
 # Nutrition-Expert
-An interactive 2-d game, providing knowledge about food & nutrition and FUN to users
+![cover image](Cover.png)
+
+An interactive 2-d game, providing knowledge about food & nutrition and FUN to people <br>
+[Watch the demo video](https://www.youtube.com/watch?v=1K1vJ4ttd60&ab_channel=BruceZhu)
 
 ## Rules
 1. Select a specific nutrient that you are interested in
