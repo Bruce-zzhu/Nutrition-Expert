@@ -4,7 +4,7 @@
 An interactive 2-d game, providing knowledge about food & nutrition and FUN to people <br>
 [Watch the demo video](https://www.youtube.com/watch?v=1K1vJ4ttd60&ab_channel=BruceZhu)
 
-## Rules
+## Game rules
 1. Select a specific nutrient that you are interested in
 2. Move the character to eat the food that contains the chosen nutrient
 3. The scores depend on how much the chosen nutrient the food contains 
@@ -20,7 +20,7 @@ $ python3 -m venv venv
 
 # Activate virtual environment
 source venv/bin/activate # MacOS
-venv\Scripts\Activate # PowerShell
+venv\Scripts\Activate # Windows
 
 # Install list of requirements from requirements.txt file
  (venv) $ pip3 install -r requirements.txt
