@@ -20,7 +20,7 @@ $ python3 -m venv venv
 
 # Activate virtual environment
 source venv/bin/activate # MacOS
-venv/Scripts/Activate.ps1 # PowerShell
+venv\Scripts\Activate # PowerShell
 
 # Install list of requirements from requirements.txt file
  (venv) $ pip3 install -r requirements.txt
